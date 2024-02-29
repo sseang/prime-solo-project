@@ -1,8 +1,7 @@
 # AnimeNerdzStation
 
 Most streaming services are saturated with anime of all genres and of all ages. As many users of streaming services are avid watchers who enjoy content more geared towards young adults this can be a frustrating filtering process.
-AnimeNerdStation makes the search process easier by having a library with more mature content.
-Users can add or delete shows on their watch list, rate viewed shows, suggest new anime content and easily find options to fit their preference.
+AnimeNerdStation can help condense and streamline the search process. Users can suggest new content and easily find options to fit their preference.
 
 ## Getting Started
 
