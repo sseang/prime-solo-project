@@ -10,8 +10,6 @@ router.get('/', (req, res) => {
   // GET route code here
 });
 
-const BASE_URL_ANIME = 'anilist.co/api/v2/oauth/authorize';
-
 //POST route template
 
 router.post('/', (req, res) => {});
