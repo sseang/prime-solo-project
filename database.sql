@@ -7,10 +7,16 @@ CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL, 
-    "favorite_genres" VARCHAR (200) NOT NULL,
-    "avatar" TEXT NOT NULL
+	"access_level" INT DEFAULT 0
 );
 
+--user junction 
+
+CREATE TABLE "user_profile" (
+	"id" SERIAL PRIMARY KEY,
+	"profile_id" INT REFERENCES "user",
+    "favorite_genres" VARCHAR (200) NOT NULL,
+    "avatar" TEXT NOT NULL);
 --anime table
 
 CREATE TABLE "anime" (
@@ -40,8 +46,8 @@ CREATE TABLE "anime_genres" (
 --watchlist table
 CREATE TABLE "watchlist" (
     "id" SERIAL PRIMARY KEY,
-    "user_id" INT REFERENCES "user" NOT NULL,
-    "anime_genres_id" INT REFERENCES "anime_genres" NOT NULL,
+    "user_id" INT REFERENCES "user",
+    "animeList_id" INT REFERENCES "anime" NOT NULL,
     "isWatched" BOOLEAN DEFAULT FALSE,
     "isLiked" BOOLEAN DEFAULT FALSE
 );
@@ -58,11 +64,11 @@ CREATE TABLE "anime_liked" (
 
 --test data
 
-INSERT INTO "user" ("username", "password", "favorite_genres", "avatar")
-VALUES ('Naruto', 'tuna', 'Action, Adventure, Horror', 'images/fujiCherries.jpg'),
-('Sky Captain', 'shark', 'Drama, Fantasy, Thriller', 'images/nightCherries.jpg'),
-('PhoMaster Nguyen', 'fishy', 'Comedy, Science Fiction','images/cherry-blossom Small.jpg'),
-('Bill', 'sushi', 'Psycological, Thriller','images/ninja.jpg');
+INSERT INTO "user" ("username", "password")
+VALUES ('Naruto', 'tuna'),
+('Sky Captain', 'shark' ),
+('PhoMaster Nguyen', 'fishy'),
+('Bill', 'sushi');
 
 
 
@@ -74,7 +80,7 @@ VALUES
 ('Drama'),
 ('Fantasy'),
 ('Horror'),
-('Psycological'),
+('Psychological'),
 ('Romance'),        
 ('Science Fiction'),     
 ('Thriller')
@@ -150,5 +156,12 @@ VALUES
 (19,1), (19,5), (19,9), --Avenger 
 (20,1), (20,2), (20,4), (20,8); --Basilisk
 
+-- Starter watchlist data
+INSERT INTO "watchlist" ("user_id", "animeList_id")
+VALUES 
 
-SELECT * FROM "anime_genres";
+(5,20), (5,19), (5,18), (5,17), (5,16), --Bill
+(4,15), (4,14), (4,13), (4,12), (4,11), --PhoMaster
+(3,10), (3,9), (3,8), (3,7), (3,6), --Sky Captain
+(2,5), (2,4), (2,3), (2,2), (2,1), --Naruto
+(1,20), (1,1), (1,8), (1,14), (1,5), (1,9); --Darth Vadar

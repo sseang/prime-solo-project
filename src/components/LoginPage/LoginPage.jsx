@@ -15,9 +15,8 @@ function LoginPage() {
           className="btn btn_asLink"
           onClick={() => {
             history.push('/registration');
-          }}
-        >
-          Register
+          }}>
+          Not already a user? Go to New User Registration
         </button>
       </center>
     </div>
