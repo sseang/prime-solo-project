@@ -37,13 +37,13 @@ router.post('/profile', (req, res, next) => {
   const userId = req.body.id;
   //const password = encryptLib.encryptPassword(req.body.password);
 
-  const queryText = `INSERT INTO "user_profile" (profile_id, favorite_genres, avatar)
-    VALUES ($1, $2);`;
+  const queryText = `INSERT INTO "user_profile" ("profile_id", "favorite_genres", "avatar")
+    VALUES ($1, $2, $3);`;
   pool
     .query(queryText, [userId])
     .then(() => res.sendStatus(201))
     .catch((err) => {
-      console.log('User registration failed: ', err);
+      console.log('OH NO!!! PROFILE failed!: ', err);
       res.sendStatus(500);
     });
 });

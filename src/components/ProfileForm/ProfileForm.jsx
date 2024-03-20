@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function ProfileForm() {
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [favorite, setFavorite] = useState('');
+  const [avatar, setAvatar] = useState('');
+
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
@@ -14,7 +16,8 @@ function ProfileForm() {
       type: 'PROFILE',
       payload: {
         username: username,
-        password: password,
+        favorite: favorite,
+        avatar: avatar,
       },
     });
   }; // end registerUser
@@ -40,19 +43,32 @@ function ProfileForm() {
         </label>
       </div>
       <div>
-        <label htmlFor="password">
-          Password:
+        <label htmlFor="favorite">
+          Favorite Genres:
           <input
-            type="password"
-            name="password"
-            value={password}
+            type="text"
+            name="favorite"
+            value={favorite}
             required
-            onChange={(event) => setPassword(event.target.value)}
+            onChange={(event) => setFavorite(event.target.value)}
           />
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        <label htmlFor="avatar">
+          Upload Avatar:
+          <input
+            type="text"
+            name="avatar"
+            value={avatar}
+            required
+            onChange={(event) => setFavorite(event.target.value)}
+          />
+          <button>Browse File</button>
+        </label>
+      </div>
+      <div>
+        <input className="btn" type="submit" name="submit" value="Submit" />
       </div>
     </form>
   );
