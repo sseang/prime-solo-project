@@ -32,10 +32,26 @@ const registrationMessage = (state = '', action) => {
   }
 };
 
+// registrationMessage holds the string that will display
+// on the registration screen if there's an error
+const profileMessage = (state = '', action) => {
+  switch (action.type) {
+    case 'CLEAR_PROFILE_ERROR':
+      return '';
+    case 'PROFILE_INPUT_ERROR':
+      return 'Choose a username and avatar!';
+    case 'PROFILE_FAILED':
+      return "Whoops! That didn't work. The username might already be taken. Try again!";
+    default:
+      return state;
+  }
+};
+
 // make one object that has keys loginMessage, registrationMessage
 // these will be on the redux state at:
 // state.errors.loginMessage and state.errors.registrationMessage
 export default combineReducers({
   loginMessage,
   registrationMessage,
+  profileMessage,
 });

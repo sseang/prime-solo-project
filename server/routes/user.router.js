@@ -32,6 +32,22 @@ router.post('/register', (req, res, next) => {
     });
 });
 
+// Handles POST request with new user profile data
+router.post('/profile', (req, res, next) => {
+  const userId = req.body.id;
+  //const password = encryptLib.encryptPassword(req.body.password);
+
+  const queryText = `INSERT INTO "user_profile" (profile_id, favorite_genres, avatar)
+    VALUES ($1, $2);`;
+  pool
+    .query(queryText, [userId])
+    .then(() => res.sendStatus(201))
+    .catch((err) => {
+      console.log('User registration failed: ', err);
+      res.sendStatus(500);
+    });
+});
+
 // Handles login form authenticate/login POST
 // userStrategy.authenticate('local') is middleware that we run on this route
 // this middleware will run our POST if successful

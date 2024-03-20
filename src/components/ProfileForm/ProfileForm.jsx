@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-function RegisterForm() {
+function ProfileForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
-  const registerUser = (event) => {
+  const userProfile = (event) => {
     event.preventDefault();
 
     dispatch({
-      type: 'REGISTER',
+      type: 'PROFILE',
       payload: {
         username: username,
         password: password,
@@ -20,16 +20,16 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
-      <h2>New User Registration</h2>
-      {errors.registrationMessage && (
+    <form className="formPanel" onSubmit={userProfile}>
+      <h2>Add Profile</h2>
+      {errors.profileMessage && (
         <h3 className="alert" role="alert">
-          {errors.registrationMessage}
+          {errors.profileMessage}
         </h3>
       )}
       <div>
         <label htmlFor="username">
-          Username:
+          Re-enter username:
           <input
             type="text"
             name="username"
@@ -58,4 +58,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default ProfileForm;

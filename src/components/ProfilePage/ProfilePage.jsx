@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { useHistory } from 'react-router-dom';
-import RegisterForm from '../RegisterForm/RegisterForm';
+import ProfileForm from '../ProfileForm/ProfileForm';
 
-function RegisterPage() {
+function ProfilePage() {
   const history = useHistory();
 
   return (
     <div>
-      <RegisterForm />
+      <ProfileForm />
 
       <center>
         <button
@@ -17,11 +17,11 @@ function RegisterPage() {
           onClick={() => {
             history.push('/login');
           }}>
-          Already a user? Go to Login
+          Logout
         </button>
       </center>
     </div>
   );
 }
 
-export default RegisterPage;
+export default ProfilePage;
