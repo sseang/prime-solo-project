@@ -32,7 +32,7 @@ router.post('/register', (req, res, next) => {
     });
 });
 
-// Handles POST request with new user profile data
+// Handles PUT request with new user profile data
 router.put('/:id', (req, res, next) => {
   const userId = req.params.id;
   const sqlData = req.body;
@@ -49,7 +49,7 @@ router.put('/:id', (req, res, next) => {
         .query(queryText2, [sqlData.avatar, userId])
         .then((avatarResponse) => {
           //confirm and label data
-          console.log('AVATAT RESULTS:', userId);
+          console.log('AVATAR RESULTS:', userId);
           res.sendStatus(201);
         })
         .catch((err) => {
