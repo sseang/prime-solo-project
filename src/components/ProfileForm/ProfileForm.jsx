@@ -62,7 +62,7 @@ function ProfileForm() {
             name="avatar"
             value={avatar}
             required
-            onChange={(event) => setFavorite(event.target.value)}
+            onChange={(event) => setAvatar(event.target.value)}
           />
           <button>Browse File</button>
         </label>

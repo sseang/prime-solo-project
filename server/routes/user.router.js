@@ -33,15 +33,30 @@ router.post('/register', (req, res, next) => {
 });
 
 // Handles POST request with new user profile data
-router.post('/profile', (req, res, next) => {
-  const userId = req.body.id;
-  //const password = encryptLib.encryptPassword(req.body.password);
+router.put('/:id', (req, res, next) => {
+  const userId = req.params.id;
+  const sqlData = req.body;
 
-  const queryText = `INSERT INTO "user_profile" ("profile_id", "favorite_genres", "avatar")
-    VALUES ($1, $2, $3);`;
+  const queryText = `UPDATE "user" SET "favorite_genres" = $1 WHERE "id" = $2;`;
+  const queryText2 = `UPDATE "user" SET "avatar" = $1 WHERE "id" = $2;`;
+
   pool
-    .query(queryText, [userId])
-    .then(() => res.sendStatus(201))
+    .query(queryText, [sqlData.favorite_genres, userId])
+    .then((favorite_genresResponse) => {
+      //confirm and label data
+      console.log('FAV RESULTS:', sqlData);
+      pool
+        .query(queryText2, [sqlData.avatar, userId])
+        .then((avatarResponse) => {
+          //confirm and label data
+          console.log('AVATAT RESULTS:', userId);
+          res.sendStatus(201);
+        })
+        .catch((err) => {
+          console.log('OH NO!!! PROFILE failed!: ', err);
+          res.sendStatus(500);
+        });
+    })
     .catch((err) => {
       console.log('OH NO!!! PROFILE failed!: ', err);
       res.sendStatus(500);
