@@ -15,7 +15,6 @@ function ProfileForm() {
     dispatch({
       type: 'PROFILE',
       payload: {
-        username: username,
         favorite: favorite,
         avatar: avatar,
       },
@@ -30,7 +29,9 @@ function ProfileForm() {
           {errors.profileMessage}
         </h3>
       )}
-      <div>
+
+      {/* entering usename 2x seems redundant */}
+      {/* <div>
         <label htmlFor="username">
           Re-enter username:
           <input
@@ -41,7 +42,7 @@ function ProfileForm() {
             onChange={(event) => setUsername(event.target.value)}
           />
         </label>
-      </div>
+      </div> */}
       <div>
         <label htmlFor="favorite">
           Favorite Genres:

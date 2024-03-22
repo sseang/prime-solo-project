@@ -12,8 +12,23 @@ const {
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
+  const queryText = `
+  SELECT * FROM "anime"
+    ORDER BY "title" ASC;
+`;
+  pool
+    .query(queryText)
+    .then((result) => {
+      //confirm and label data
+      console.log('ANIME RESULTS:', result);
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log('ERROR: Get all anime', err);
+      res.sendStatus(500);
+    });
 });
 
 //POST route template

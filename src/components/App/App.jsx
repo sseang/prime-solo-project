@@ -37,7 +37,7 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          {/* Visiting localhost:5173 will redirect to localhost:5173/home */}
+          {/* Visiting localhost:5173 will redirect to localhost:5173/login */}
           <Redirect exact from="/" to="/login" />
 
           {/* Visiting localhost:5173/about will show the about page. */}

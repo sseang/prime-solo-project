@@ -7,16 +7,17 @@ CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL, 
-	"access_level" INT DEFAULT 0
+	"access_level" INT DEFAULT 0,
+	"favorite_genres" TEXT,
+    "avatar" TEXT 
 );
 
 --user junction 
 
 CREATE TABLE "user_profile" (
 	"id" SERIAL PRIMARY KEY,
-	"profile_id" INT REFERENCES "user",
-    "favorite_genres" VARCHAR (200) NOT NULL,
-    "avatar" TEXT NOT NULL);
+	"username" VARCHAR (80)UNIQUE NOT NULL);
+
 --anime table
 
 CREATE TABLE "anime" (
@@ -65,7 +66,9 @@ CREATE TABLE "anime_liked" (
 --test data
 
 INSERT INTO "user" ("username", "password")
-VALUES ('Naruto', 'tuna'),
+VALUES 
+('Darth Vadar', 'father'),
+('Naruto', 'tuna'),
 ('Sky Captain', 'shark' ),
 ('PhoMaster Nguyen', 'fishy'),
 ('Bill', 'sushi');
@@ -165,3 +168,6 @@ VALUES
 (3,10), (3,9), (3,8), (3,7), (3,6), --Sky Captain
 (2,5), (2,4), (2,3), (2,2), (2,1), --Naruto
 (1,20), (1,1), (1,8), (1,14), (1,5), (1,9); --Darth Vadar
+
+UPDATE "user" SET "favorite_genres" = 'Horror' WHERE "id" = 5;
+UPDATE "user" SET "avatar" = 'TEST' WHERE "id" = 5;
