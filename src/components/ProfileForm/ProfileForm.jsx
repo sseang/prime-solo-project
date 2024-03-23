@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useHistory } from 'react-router-dom';
+
 function ProfileForm() {
-  const [username, setUsername] = useState('');
+  //username redundant
+  // const [username, setUsername] = useState('');
   const [favorite, setFavorite] = useState('');
   const [avatar, setAvatar] = useState('');
 
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const userProfile = (event) => {
     event.preventDefault();
@@ -19,6 +23,7 @@ function ProfileForm() {
         avatar: avatar,
       },
     });
+    history.push('/user');
   }; // end registerUser
 
   return (

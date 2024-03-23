@@ -94,6 +94,17 @@ function App() {
               <RegisterPage />
             )}
           </Route>
+          {/* //path to profile */}
+          <Route exact path="/profile">
+            {user.id ? (
+              // If the user is already logged in,
+              // redirect them to the /user page
+              <Redirect to="/user" />
+            ) : (
+              // Otherwise, show the Landing page
+              <LoginPage />
+            )}
+          </Route>
 
           <Route exact path="/home">
             {user.id ? (
