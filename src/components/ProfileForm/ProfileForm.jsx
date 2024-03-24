@@ -10,16 +10,20 @@ function ProfileForm() {
   const [avatar, setAvatar] = useState('');
 
   const errors = useSelector((store) => store.errors);
+  const user = useSelector((store) => store.user);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const userProfile = (event) => {
+  const userProfile = (id) => {
     event.preventDefault();
+    console.log('Submit Profile');
 
     dispatch({
       type: 'UPDATE_USER',
       payload: {
-        favorite: favorite,
+        id: user.id,
+        favorite_genres: favorite,
         avatar: avatar,
       },
     });
@@ -27,8 +31,10 @@ function ProfileForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={userProfile}>
-      <h2>Add Profile</h2>
+    <form className="formPanel" onSubmit={() => userProfile(user.id)}>
+      <h2>Edit Profile</h2>
+      <p>Welcome, {user.username}!</p>
+      <p>Your ID is: {user.id}</p>
       {errors.profileMessage && (
         <h3 className="alert" role="alert">
           {errors.profileMessage}
@@ -38,10 +44,10 @@ function ProfileForm() {
       {/* entering usename 2x seems redundant */}
       {/* <div>
         <label htmlFor="username">
-          Re-enter username:
+          User ID:
           <input
             type="text"
-            name="username"
+            name="userID"
             value={username}
             required
             onChange={(event) => setUsername(event.target.value)}
