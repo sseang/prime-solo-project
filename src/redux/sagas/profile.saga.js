@@ -9,8 +9,11 @@ function* profileUser(action) {
     yield put({ type: 'CLEAR_PROFILE_ERROR' });
 
     //passes the favorite_genres and avatar from the payload to the server
-    yield axios.put(`/api/user/${action.payload.id}`);
-    yield put({ type: 'UPDATE_PROFILE', payload: action.payload });
+    yield axios.put(`/api/user/${action.payload.id}`, action.payload);
+    yield put({
+      type: 'UPDATE_PROFILE',
+      payload: action.payload,
+    });
     alert('Profile added:', action.payload);
   } catch (error) {
     console.log('Error with profile submit:', error);
