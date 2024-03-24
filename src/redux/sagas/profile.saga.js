@@ -3,14 +3,14 @@ import axios from 'axios';
 
 // worker Saga: will be fired on "PROFILE" actions
 function* profileUser(action) {
-  console.log(action.payload);
+  console.log('PROFILE', action.payload);
   try {
     // clear any existing error on the registration page
     yield put({ type: 'CLEAR_PROFILE_ERROR' });
 
     //passes the favorite_genres and avatar from the payload to the server
-    yield axios.put('/api/user:id');
-    yield put({ type: 'SET_USER', payload: action.payload });
+    yield axios.put(`/api/user/${action.payload.id}`);
+    yield put({ type: 'UPDATE_PROFILE', payload: action.payload });
     alert('Profile added:', action.payload);
   } catch (error) {
     console.log('Error with profile submit:', error);

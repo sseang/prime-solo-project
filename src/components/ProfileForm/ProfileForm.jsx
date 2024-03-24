@@ -17,7 +17,7 @@ function ProfileForm() {
 
   const userProfile = (id) => {
     event.preventDefault();
-    console.log('Submit Profile');
+    console.log('In the PROFILE function!');
 
     dispatch({
       type: 'UPDATE_USER',

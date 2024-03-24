@@ -36,6 +36,8 @@ router.post('/register', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
   const userId = req.params.id;
   const sqlData = req.body;
+  console.log(userId);
+  console.log(sqlData);
 
   const queryText = `UPDATE "user" SET "favorite_genres" = $1 WHERE "id" = $2;`;
   const queryText2 = `UPDATE "user" SET "avatar" = $1 WHERE "id" = $2;`;
@@ -53,12 +55,12 @@ router.put('/:id', (req, res, next) => {
           res.sendStatus(201);
         })
         .catch((err) => {
-          console.log('OH NO!!! PROFILE failed!: ', err);
+          console.log('OH NO!!! FAV failed!: ', err);
           res.sendStatus(500);
         });
     })
     .catch((err) => {
-      console.log('OH NO!!! PROFILE failed!: ', err);
+      console.log('OH NO!!! AVATAR failed!: ', err);
       res.sendStatus(500);
     });
 });
