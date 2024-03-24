@@ -17,13 +17,13 @@ function ProfileForm() {
     event.preventDefault();
 
     dispatch({
-      type: 'PROFILE',
+      type: 'UPDATE_USER',
       payload: {
         favorite: favorite,
         avatar: avatar,
       },
     });
-    history.push('/user');
+    //history.push('/user');
   }; // end registerUser
 
   return (

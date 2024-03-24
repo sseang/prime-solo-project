@@ -32,8 +32,8 @@ const registrationMessage = (state = '', action) => {
   }
 };
 
-// registrationMessage holds the string that will display
-// on the registration screen if there's an error
+// profileMessage holds the string that will display
+// on the profile screen if there's an error
 const profileMessage = (state = '', action) => {
   switch (action.type) {
     case 'CLEAR_PROFILE_ERROR':
