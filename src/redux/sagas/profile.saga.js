@@ -14,7 +14,7 @@ function* profileUser(action) {
       type: 'UPDATE_PROFILE',
       payload: action.payload,
     });
-    alert('Profile added:', action.payload);
+    alert('Profile Updated!!');
   } catch (error) {
     console.log('Error with profile submit:', error);
     yield put({ type: 'PROFILE_FAILED' });

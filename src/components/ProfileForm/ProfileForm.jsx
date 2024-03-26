@@ -27,7 +27,7 @@ function ProfileForm() {
         avatar: avatar,
       },
     });
-    //history.push('/user');
+    history.push('/user');
   }; // end registerUser
 
   return (
