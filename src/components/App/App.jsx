@@ -20,9 +20,10 @@ import InfoPage from '../InfoPage/InfoPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
+import WatchListPage from '../WatchListPage/WatchListPage';
+import DetailsPage from '../DetailsPage/DetailsPage';
 
 import './App.css';
-import WatchListPage from '../WatchListPage/WatchListPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -79,6 +80,13 @@ function App() {
             exact
             path="/watchlist">
             <WatchListPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows DetailsPage else shows LoginPage
+            exact
+            path="/details">
+            <DetailsPage />
           </ProtectedRoute>
 
           <Route exact path="/login">
