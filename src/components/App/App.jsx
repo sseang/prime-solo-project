@@ -16,12 +16,13 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
+//import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 
 import './App.css';
+import WatchListPage from '../WatchListPage/WatchListPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -73,6 +74,13 @@ function App() {
             <ProfilePage />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows WatchListPage else shows LoginPage
+            exact
+            path="/watchlist">
+            <WatchListPage />
+          </ProtectedRoute>
+
           <Route exact path="/login">
             {user.id ? (
               // If the user is already logged in,
@@ -101,19 +109,19 @@ function App() {
               // redirect them to the /user page
               <Redirect to="/user" />
             ) : (
-              // Otherwise, show the Landing page
+              // Otherwise, show the Login page
               <LoginPage />
             )}
           </Route>
 
-          <Route exact path="/home">
+          <Route exact path="/watchlist">
             {user.id ? (
               // If the user is already logged in,
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/watchlist" />
             ) : (
-              // Otherwise, show the Landing page
-              <LandingPage />
+              // Otherwise, show the Login page
+              <LoginPage />
             )}
           </Route>
 

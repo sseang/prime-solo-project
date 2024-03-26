@@ -1,36 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Nav2.css';
+
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-function NavSearch() {
+function SearchForm() {
   const user = useSelector((store) => store.user);
   const [animeSearch, setAnimeSearch] = useState({ title: '' });
+  const dispatch = useDispatch();
 
   const handleSearch = (event) => {
     event.preventDefault();
-    dispatch({ type: 'SEARCH_GIPHY', payload: animeSearch });
+    dispatch({ type: 'SEARCH_ANIME', payload: animeSearch });
     setAnimeSearch({ tile: '' });
   };
 
   return (
     <div>
-      <div>
-        {/* If a user is logged in, show these links */}
-        {user.id && (
-          <>
-            <Link className="navLink" to="/user">
-              Home
-            </Link>
-
-            <Link className="navLink" to="/watchlist">
-              Watch List
-            </Link>
-          </>
-        )}
-      </div>
       <div>
         <form>
           <input
@@ -49,4 +36,4 @@ function NavSearch() {
   );
 }
 
-export default NavSearch;
+export default SearchForm;
