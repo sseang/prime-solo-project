@@ -169,5 +169,38 @@ VALUES
 (2,5), (2,4), (2,3), (2,2), (2,1), --Naruto
 (1,20), (1,1), (1,8), (1,14), (1,5), (1,9); --Darth Vadar
 
+--QUERY for PUT route for "user" update at ProfileForm
 UPDATE "user" SET "favorite_genres" = 'Horror' WHERE "id" = 5;
 UPDATE "user" SET "avatar" = 'TEST' WHERE "id" = 5;
+
+--QUERY for GET route for all "anime" 
+
+SELECT * FROM "anime"
+ORDER BY "title" ASC;
+
+--QUERY for GET route for top rated "anime" 
+
+SELECT * FROM "anime"
+JOIN "watchlist" ON "anime"."id" = "watchlist"."animeList_id";
+
+SELECT COUNT("watchlist"."isLiked") AS "TOP Rated Anime", "anime"."title", "anime"."poster" FROM "anime"
+JOIN "watchlist" ON "anime"."id" = "watchlist"."animeList_id"
+GROUP BY "anime"."id" 
+ORDER BY "TOP Rated Anime" DESC LIMIT 5
+;
+
+--QUERY for GET route for "anime" DetailsPage
+SELECT "anime"."title", string_agg("genres"."name", ', ') AS "Genres", "anime"."description", "anime"."poster", "anime"."director", "anime"."year_published"  
+  FROM "genres"
+  JOIN "anime_genres" ON "genres"."id"= "anime_genres"."genre_id"
+  JOIN "anime" ON "anime_genres"."anime_id" = "anime"."id"
+  WHERE "anime"."id" =2
+  GROUP BY "anime"."id";
+  
+--QUERY for GET route for "anime" WatchListPage
+
+SELECT  "watchlist"."user_id", "user"."username", "anime"."title", "anime"."poster", "watchlist"."isWatched", "watchlist"."isLiked" FROM "anime"
+JOIN "watchlist" ON "anime"."id" = "watchlist"."animeList_id"
+JOIN "user" ON "watchlist"."user_id" = "user"."id"
+WHERE "user"."id" = 1
+ORDER BY "user_id";

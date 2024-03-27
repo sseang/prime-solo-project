@@ -76,6 +76,7 @@ function ProfileForm() {
             required
             onChange={(event) => setAvatar(event.target.value)}
           />
+          {/* TODO- need to add AWS S3 bucket to hold upload */}
           <button>Browse File</button>
         </label>
       </div>

@@ -10,7 +10,8 @@ const passport = require('./strategies/user.strategy');
 // Route Includes
 const userRouter = require('./routes/user.router');
 const animeRouter = require('./routes/anime.router');
-const watchlistRouter = require('./routes/watchlist');
+const watchlistRouter = require('./routes/watchlist.router');
+const genresRouter = require('./routes/genres.router');
 
 // Express Middleware
 app.use(express.json());
@@ -28,6 +29,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/anime', animeRouter);
 app.use('/api/watchlist', watchlistRouter);
+app.use('/api/genres', genresRouter);
 
 // Listen Server & Port
 app.listen(PORT, () => {
