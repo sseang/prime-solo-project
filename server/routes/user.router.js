@@ -34,8 +34,11 @@ router.post('/register', (req, res, next) => {
 
 // Handles PUT request with new user profile data
 router.put('/:id', (req, res, next) => {
+  //confirm in the function
+  console.log('In the UPDATE USER!');
   const userId = req.params.id;
   const sqlData = req.body;
+  //comfirm data
   console.log(userId);
   console.log(sqlData);
 
