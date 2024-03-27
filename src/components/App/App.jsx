@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import ProfilePage from '../ProfilePage/ProfilePage';
 import WatchListPage from '../WatchListPage/WatchListPage';
 import DetailsPage from '../DetailsPage/DetailsPage';
+import GenresPage from '../GenresPage/GenresPage';
 
 import './App.css';
 
@@ -76,6 +77,13 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
+            // logged in shows DetailsPage else shows LoginPage
+            exact
+            path="/details">
+            <DetailsPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
             // logged in shows WatchListPage else shows LoginPage
             exact
             path="/watchlist">
@@ -83,10 +91,10 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows DetailsPage else shows LoginPage
+            // logged in shows GenresPage else shows LoginPage
             exact
-            path="/details">
-            <DetailsPage />
+            path="/genres">
+            <GenresPage />
           </ProtectedRoute>
 
           <Route exact path="/login">
@@ -122,11 +130,33 @@ function App() {
             )}
           </Route>
 
+          <Route exact path="/details">
+            {user.id ? (
+              // If the user is already logged in,
+              // redirect them to the /watchlist page
+              <Redirect to="/details" />
+            ) : (
+              // Otherwise, show the Login page
+              <LoginPage />
+            )}
+          </Route>
+
           <Route exact path="/watchlist">
             {user.id ? (
               // If the user is already logged in,
-              // redirect them to the /user page
+              // redirect them to the /watchlist page
               <Redirect to="/watchlist" />
+            ) : (
+              // Otherwise, show the Login page
+              <LoginPage />
+            )}
+          </Route>
+
+          <Route exact path="/genres">
+            {user.id ? (
+              // If the user is already logged in,
+              // redirect them to the /genres page
+              <Redirect to="/genres" />
             ) : (
               // Otherwise, show the Login page
               <LoginPage />
