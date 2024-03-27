@@ -8,8 +8,9 @@ function GenresPage() {
   return (
     <div className="container">
       <SearchForm />
-      <h2 aria-placeholder="Genres"></h2>
+      <h2>GENRES</h2>
       <h3>Welcome, {user.username}!</h3>
+      <button>Add to Watch List</button>
     </div>
   );
 }

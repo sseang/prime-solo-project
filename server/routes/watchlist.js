@@ -40,4 +40,7 @@ router.post('/', (req, res) => {
   // POST route code here
 });
 
+//TODO- DELETE route
+//TODO- PUT route
+
 module.exports = router;

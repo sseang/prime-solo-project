@@ -31,6 +31,7 @@ function DetailsPage() {
           <div>
             Genres: <p>{detailData.name}</p>
           </div>
+          TODO-resize img w/ primeReact!!
           <img src={detailData.poster} />
           <p >{detailData.description}</p>
 
