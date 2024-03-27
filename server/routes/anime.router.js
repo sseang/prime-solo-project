@@ -34,6 +34,35 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
+//GET route for DetailPage SAGA
+router.get('/:id', (req, res) => {
+  const queryText = `SELECT "anime"."title", string_agg("genres"."name", ', ') AS "Genres", "anime"."description", "anime"."poster", "anime"."director", "anime"."year_published"  
+  FROM "genres"
+  JOIN "anime_genres" ON "genres"."id"= "anime_genres"."genre_id"
+  JOIN "anime" ON "anime_genres"."anime_id" = "anime"."id"
+  WHERE "anime"."id" =$1
+  GROUP BY "anime"."id";
+  ;`;
+  //needed to specify "anime" above
+  pool
+    //pass params
+    .query(queryText, [req.params.id])
+    //able to get genre data
+    //.query(queryText)
+
+    //success and return
+
+    .then((result) => {
+      res.send(result.rows[0]);
+    })
+    //catch errors
+
+    .catch((err) => {
+      console.log('Error in GET /api/anime/:id', err);
+      res.sendStatus(500);
+    });
+});
+
 //POST route template
 
 router.post('/', (req, res) => {});
