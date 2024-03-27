@@ -15,14 +15,16 @@ const {
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
   const queryText = `
-  SELECT * FROM "anime"
-    ORDER BY "title" ASC;
+  SELECT COUNT("watchlist"."isLiked") AS "TOP Rated Anime", "anime"."title", "anime"."poster" FROM "anime"
+  JOIN "watchlist" ON "anime"."id" = "watchlist"."animeList_id"
+  GROUP BY "anime"."id" 
+  ORDER BY "TOP Rated Anime" DESC LIMIT 5
 `;
   pool
     .query(queryText)
     .then((result) => {
       //confirm and label data
-      console.log('ANIME RESULTS:', result);
+      console.log('TOP Rated ANIME RESULTS:', result);
       res.send(result.rows);
     })
     .catch((err) => {

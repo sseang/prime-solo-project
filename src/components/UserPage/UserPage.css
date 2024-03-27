@@ -1,0 +1,11 @@
+.genres {
+  text-wrap: wrap;
+  padding: 25px;
+  margin-left: 5px;
+}
+
+.genresButtons {
+  text-wrap: wrap;
+  padding: 10px;
+  margin-left: 5px;
+}
