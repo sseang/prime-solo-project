@@ -10,6 +10,7 @@ function GenresPage() {
       <SearchForm />
       <h2>GENRES</h2>
       <h3>Welcome, {user.username}!</h3>
+      <h4></h4>
       <button>Add to Watch List</button>
     </div>
   );

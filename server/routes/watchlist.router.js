@@ -41,6 +41,26 @@ router.post('/', (req, res) => {
 });
 
 //TODO- DELETE route
+router.delete('/:id', (req, res) => {
+  //confirm in the function
+  console.log('In the DELETE watchlist!');
+
+  const watchlistId = req.params.id;
+  //confirm data
+  console.log('WATCHLIST ID!:', watchlistId);
+
+  const queryText = `DELETE FROM "watchlist" WHERE "id" = $1;`;
+
+  pool
+    .query(queryText, [watchlistId])
+    .then((response) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+});
 //TODO- PUT route
 
 module.exports = router;

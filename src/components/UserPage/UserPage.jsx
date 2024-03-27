@@ -18,6 +18,7 @@ function UserPage() {
         {/* <img /> */}
       </div>
       <h4>Genres</h4>
+      {/* TODO- onclick to push to GenresPAge  */}
       <span className="genres">
         <button className="genresButtons">Action</button>
         <button className="genresButtons">Adventure</button>
