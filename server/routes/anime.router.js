@@ -12,6 +12,7 @@ const {
 /**
  * GET route template
  */
+//GET route for TOP Rated Anime
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
   const queryText = `
