@@ -216,3 +216,10 @@ WHERE "id" = 23;
 
 UPDATE "watchlist" SET "isLiked"  = TRUE 
 WHERE "id" = 23;
+
+--QUERY for GET route for "genres" GenresPage
+SELECT "genres"."name" AS "Genre", "anime"."id", "anime"."title", "anime"."poster" FROM "genres"
+JOIN "anime_genres" ON "genres"."id"= "anime_genres"."genre_id"
+JOIN "anime" ON "anime_genres"."anime_id" = "anime"."id"
+WHERE "genres"."id" = 1
+ORDER BY "anime"."title" ASC;

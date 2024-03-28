@@ -37,13 +37,6 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
-});
-
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   //confirm in the function
   console.log('In the DELETE watchlist function!');
@@ -99,4 +92,12 @@ router.put('/:id', rejectUnauthenticated, (req, res, next) => {
       res.sendStatus(500);
     });
 });
+
+/**
+ * POST route template
+ */
+router.post('/', (req, res) => {
+  // POST route code here
+});
+
 module.exports = router;
