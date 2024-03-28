@@ -96,8 +96,31 @@ router.put('/:id', rejectUnauthenticated, (req, res, next) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/:id', (req, res) => {
   // POST route code here
+  //confirm in the function
+  console.log('In the POST watchlist function!');
+  const userId = req.params.id;
+  const sqlData = req.body;
+  //comfirm data
+  console.log(userId);
+  console.log(sqlData);
+
+  const queryText = `INSERT INTO "watchlist" ("user_id", "animeList_id")
+  VALUES ($1, $2);`;
+
+  const queryArgs = [sqlData.user_id, sqlData.animeList_id];
+
+  pool
+    .query(queryText, [userId])
+    .then((isWatchedResponse) => {
+      //confirm and label data
+      console.log('POSTED Watchlist:', isWatchedResponse);
+    })
+    .catch((err) => {
+      console.log('OH NO!!! POST failed!: ', err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

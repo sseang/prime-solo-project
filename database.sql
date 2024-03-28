@@ -185,7 +185,7 @@ ORDER BY "title" ASC;
 SELECT * FROM "anime"
 JOIN "watchlist" ON "anime"."id" = "watchlist"."animeList_id";
 
-SELECT COUNT("watchlist"."isLiked") AS "TOP Rated Anime", "anime"."title", "anime"."poster" FROM "anime"
+SELECT COUNT("watchlist"."isLiked") AS "TOP Rated Anime", "anime"."id", "anime"."title", "anime"."poster" FROM "anime"
 JOIN "watchlist" ON "anime"."id" = "watchlist"."animeList_id"
 GROUP BY "anime"."id" 
 ORDER BY "TOP Rated Anime" DESC LIMIT 5
