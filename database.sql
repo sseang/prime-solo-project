@@ -167,8 +167,10 @@ VALUES
 (4,15), (4,14), (4,13), (4,12), (4,11), --PhoMaster
 (3,10), (3,9), (3,8), (3,7), (3,6), --Sky Captain
 (2,5), (2,4), (2,3), (2,2), (2,1), --Naruto
-(1,20), (1,1), (1,8), (1,14), (1,5), (1,9); --Darth Vadar
+(1,20), (1,1), (1,8), (1,14), (1,5), (1,9), ; --Darth Vadar
 
+INSERT INTO "watchlist" ("user_id", "animeList_id")
+VALUES (1,9), (1,7);
 --QUERY for PUT route for "user" update at ProfileForm
 UPDATE "user" SET "favorite_genres" = 'Horror' WHERE "id" = 5;
 UPDATE "user" SET "avatar" = 'TEST' WHERE "id" = 5;
@@ -199,8 +201,18 @@ SELECT "anime"."title", string_agg("genres"."name", ', ') AS "Genres", "anime"."
   
 --QUERY for GET route for "anime" WatchListPage
 
-SELECT  "watchlist"."user_id", "user"."username", "anime"."title", "anime"."poster", "watchlist"."isWatched", "watchlist"."isLiked" FROM "anime"
+SELECT  "user"."id", "watchlist"."user_id", "user"."username", "anime"."title", "anime"."poster", "watchlist"."isWatched", "watchlist"."isLiked" FROM "anime"
 JOIN "watchlist" ON "anime"."id" = "watchlist"."animeList_id"
 JOIN "user" ON "watchlist"."user_id" = "user"."id"
 WHERE "user"."id" = 1
 ORDER BY "user_id";
+
+--QUERY for DELETE route for "anime" WatchListPage
+DELETE FROM "watchlist" WHERE "id" = 26;
+
+--QUERY for PUT route for "anime" WatchListPage. Make sure to nest querys in router.js!
+UPDATE "watchlist" SET "isWatched"  = TRUE 
+WHERE "id" = 23;
+
+UPDATE "watchlist" SET "isLiked"  = TRUE 
+WHERE "id" = 23;

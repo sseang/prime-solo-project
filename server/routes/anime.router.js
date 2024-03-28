@@ -35,7 +35,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 //GET route for DetailPage SAGA
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   const queryText = `SELECT "anime"."title", string_agg("genres"."name", ', ') AS "Genres", "anime"."description", "anime"."poster", "anime"."director", "anime"."year_published"  
   FROM "genres"
   JOIN "anime_genres" ON "genres"."id"= "anime_genres"."genre_id"

@@ -2,12 +2,16 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+const axios = require('axios');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 /**
  * GET route template
  */
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   // GET route code here
-  const queryText = `SELECT  "watchlist"."user_id", "user"."username", "anime"."title", "anime"."poster", "watchlist"."isWatched", "watchlist"."isLiked" FROM "anime"
+  const queryText = `SELECT  "user"."id", "watchlist"."user_id", "user"."username", "anime"."title", "anime"."poster", "watchlist"."isWatched", "watchlist"."isLiked" FROM "anime"
   JOIN "watchlist" ON "anime"."id" = "watchlist"."animeList_id"
   JOIN "user" ON "watchlist"."user_id" = "user"."id"
   WHERE "user"."id" = $1
@@ -40,7 +44,7 @@ router.post('/', (req, res) => {
   // POST route code here
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   //confirm in the function
   console.log('In the DELETE watchlist function!');
 
@@ -61,7 +65,7 @@ router.delete('/:id', (req, res) => {
     });
 });
 //TODO- PUT route
-router.put('/:id', (req, res, next) => {
+router.put('/:id', rejectUnauthenticated, (req, res, next) => {
   //confirm in the function
   console.log('In the UPDATE watchlist function!');
   const watchlistId = req.params.id;
