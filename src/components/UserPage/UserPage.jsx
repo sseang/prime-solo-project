@@ -19,15 +19,25 @@ function UserPage() {
 
   return (
     <div className="container">
+      {/* TODO-need to fix searchSaga */}
       <SearchForm />
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
+
       <h3>Top Rated Anime</h3>
-      <div>
-        <p>Title</p>
-        {/* <img /> */}
+      <div className="anime">
+        {topRated.map((topRated) => {
+          return (
+            <div key={topRated.id}>
+              <h4>{topRated.title}</h4>
+              <div>
+                <img src={topRated.poster} />
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <h4>Genres</h4>
+      <h3>Genres</h3>
       {/* TODO- onclick to push to GenresPAge  */}
       <span className="genres">
         <button className="genresButtons">Action</button>
