@@ -12,6 +12,35 @@ const {
 /**
  * GET route template
  */
+//GET for SEARCH anime
+router.get('/search', rejectUnauthenticated, (req, res) => {
+  // GET route code here
+
+  //confirm in the function
+  console.log('In the GET search function!');
+  const sqlData = req.body;
+  console.log('DATA', sqlData);
+  let queryText;
+  if (!req.query.title) {
+    queryText = `SELECT * FROM "anime"
+    WHERE "title" = $1;`;
+  } else {
+    queryText = `SELECT * FROM "anime"
+    ;`;
+  }
+  pool
+    .query(queryText, [sqlData.title])
+    .then((result) => {
+      //confirm and label data
+      console.log('ANIME RESULTS:', result);
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log('ERROR: Get SEARCH anime', err);
+      res.sendStatus(500);
+    });
+});
+
 //GET route for TOP Rated Anime
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
@@ -29,7 +58,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log('ERROR: Get all anime', err);
+      console.log('ERROR: Get TOP anime', err);
       res.sendStatus(500);
     });
 });
