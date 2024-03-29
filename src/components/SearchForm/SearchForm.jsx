@@ -24,12 +24,13 @@ function SearchForm() {
             id="search"
             placeholder="Search Title"
             type="text"
-            value={animeSearch.title}
             onChange={(event) =>
               setAnimeSearch({ ...animeSearch, title: event.target.value })
             }
           />
-          <button onClick={handleSearch}>Find ?</button>
+          <button onClick={handleSearch} value={animeSearch.title}>
+            Find ?
+          </button>
         </form>
       </div>
     </div>

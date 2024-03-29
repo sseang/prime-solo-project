@@ -1,12 +1,19 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SearchForm from '../SearchForm/SearchForm';
 import './UserPage.css';
+import { useEffect } from 'react';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const anime = useSelector((store) => store.anime);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({ type: 'FETCH_ANIME' });
+  }, []);
+
   return (
     <div className="container">
       <SearchForm />

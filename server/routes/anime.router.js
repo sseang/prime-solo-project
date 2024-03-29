@@ -12,6 +12,25 @@ const {
 /**
  * GET route template
  */
+router.get('/', rejectUnauthenticated, (req, res) => {
+  // GET route code here
+  const queryText = `
+  SELECT * FROM "anime"
+  ORDER BY "title" ASC;
+`;
+  pool
+    .query(queryText)
+    .then((result) => {
+      //confirm and label data
+      console.log('ALL ANIME RESULTS:', result);
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log('ERROR: Get ALL anime', err);
+      res.sendStatus(500);
+    });
+});
+
 //GET for SEARCH anime
 router.get('/search', rejectUnauthenticated, (req, res) => {
   // GET route code here
@@ -20,16 +39,28 @@ router.get('/search', rejectUnauthenticated, (req, res) => {
   console.log('In the GET search function!');
   const sqlData = req.body;
   console.log('DATA', sqlData);
+  console.log(req.query);
+  console.log(req.query.p);
   let queryText;
-  if (!req.query.title) {
+  if (!req.query.p) {
     queryText = `SELECT * FROM "anime"
     WHERE "title" = $1;`;
   } else {
     queryText = `SELECT * FROM "anime"
     ;`;
   }
+
+  // if (!req.query.p) {
+  //   queryText = `SELECT * FROM "anime"
+  //   WHERE "title" = $1;`;
+  // } else {
+  //   queryText = `SELECT * FROM "anime"
+  //   ;`;
+  // }
   pool
     .query(queryText, [sqlData.title])
+    //.query(queryText)
+
     .then((result) => {
       //confirm and label data
       console.log('ANIME RESULTS:', result);
@@ -42,7 +73,7 @@ router.get('/search', rejectUnauthenticated, (req, res) => {
 });
 
 //GET route for TOP Rated Anime
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/top', rejectUnauthenticated, (req, res) => {
   // GET route code here
   const queryText = `
   SELECT COUNT("watchlist"."isLiked") AS "TOP Rated Anime", "anime"."id", "anime"."title", "anime"."poster" FROM "anime"
