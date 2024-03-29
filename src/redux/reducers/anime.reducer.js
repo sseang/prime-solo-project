@@ -1,4 +1,7 @@
-// Used to store movies returned from the server
+import { combineReducers } from 'redux';
+
+// Used to store ANIME returned from the server
+
 const anime = (state = [], action) => {
   switch (action.type) {
     case 'SET_ANIME':
@@ -8,6 +11,18 @@ const anime = (state = [], action) => {
   }
 };
 
+const searchAnime = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_SEARCH':
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 // user will be on the redux state at:
 // state.user
-export default anime;
+export default combineReducers({
+  anime,
+  searchAnime,
+});

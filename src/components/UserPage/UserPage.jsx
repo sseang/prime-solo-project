@@ -9,9 +9,12 @@ function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const anime = useSelector((store) => store.anime);
+  const topRated = useSelector((store) => store.topRated);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({ type: 'FETCH_ANIME' });
+    dispatch({ type: 'FETCH_TOP_ANIME' });
   }, []);
 
   return (

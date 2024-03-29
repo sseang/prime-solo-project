@@ -1,4 +1,4 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 // worker Saga: will be fired on "PROFILE" actions
@@ -6,10 +6,13 @@ function* searchAnime(action) {
   console.log('SEARCH', action.payload);
   try {
     //passes the favorite_genres and avatar from the payload to the server
-    const searchResponse = yield axios.get(`/api/anime`);
+    const searchResponse = yield axios.get(
+      `/api/anime/search`
+      // `/api/anime/search/${action.payload}`
+    );
     yield put({
-      type: 'SEARCH_ANIME',
-      payload: action.payload,
+      type: 'SET_SEARCH',
+      payload: searchResponse.data,
     });
     alert('Anime Found!');
   } catch (error) {
@@ -18,7 +21,7 @@ function* searchAnime(action) {
 }
 
 function* searchSaga() {
-  yield takeLatest('SEARCH_ANIME', searchAnime);
+  yield takeEvery('SEARCH_ANIME', searchAnime);
 }
 
 export default searchSaga;

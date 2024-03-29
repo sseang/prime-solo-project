@@ -13,7 +13,7 @@ function SearchForm() {
   const handleSearch = (event) => {
     event.preventDefault();
     dispatch({ type: 'SEARCH_ANIME', payload: animeSearch });
-    setAnimeSearch({ tile: '' });
+    setAnimeSearch({ title: '' });
   };
 
   return (
