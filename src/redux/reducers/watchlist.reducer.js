@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-// Used to store WATCHLIST returned from the server
+// Used to store WATCH_LIST returned from the server
 
 const watchList = (state = [], action) => {
   switch (action.type) {
-    case 'SET_WATCHLIST':
+    case 'SET_WATCH_LIST':
       return action.payload;
     default:
       return state;
@@ -13,6 +13,4 @@ const watchList = (state = [], action) => {
 
 // user will be on the redux state at:
 // state.user
-export default combineReducers({
-  watchList,
-});
+export default watchList;

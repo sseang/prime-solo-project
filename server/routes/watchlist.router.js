@@ -10,6 +10,9 @@ const {
  * GET route template
  */
 router.get('/:id', rejectUnauthenticated, (req, res) => {
+  console.log('In the GET watchList function!');
+  console.log('REQ', req.params);
+
   // GET route code here
   const queryText = `SELECT  "user"."id", "watchlist"."user_id", "user"."username", "anime"."title", "anime"."poster", "watchlist"."isWatched", "watchlist"."isLiked" FROM "anime"
   JOIN "watchlist" ON "anime"."id" = "watchlist"."animeList_id"
