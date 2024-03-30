@@ -26,7 +26,7 @@ function SearchForm() {
     event.preventDefault();
     dispatch({ type: 'SEARCH_ANIME', payload: animeSearch });
     setAnimeSearch('');
-    //specify data
+    //specify data and push ID
     history.push(`/details${searchId.id}`);
   };
 

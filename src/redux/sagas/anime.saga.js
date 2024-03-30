@@ -25,7 +25,7 @@ function* fetchTop() {
     // Get TOP ANIME:
     const animeResponse = yield axios.get('/api/anime/top');
     console.log('Fetch Response:', animeResponse);
-    // Set the value of the ANIME reducer:
+    // Set the value of the TOP_ANIME reducer:
     yield put({
       type: 'SET_TOP_ANIME',
       payload: animeResponse.data,
