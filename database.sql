@@ -48,7 +48,7 @@ CREATE TABLE "anime_genres" (
 CREATE TABLE "watchlist" (
     "id" SERIAL PRIMARY KEY,
     "user_id" INT REFERENCES "user",
-    "animeList_id" INT REFERENCES "anime" NOT NULL,
+    "animeList_id" INT REFERENCES "anime",
     "isWatched" BOOLEAN DEFAULT FALSE,
     "isLiked" BOOLEAN DEFAULT FALSE
 );
@@ -188,8 +188,7 @@ JOIN "watchlist" ON "anime"."id" = "watchlist"."animeList_id";
 SELECT COUNT("watchlist"."isLiked") AS "TOP Rated Anime", "anime"."id", "anime"."title", "anime"."poster" FROM "anime"
 JOIN "watchlist" ON "anime"."id" = "watchlist"."animeList_id"
 GROUP BY "anime"."id" 
-ORDER BY "TOP Rated Anime" DESC LIMIT 5
-;
+ORDER BY "TOP Rated Anime" DESC LIMIT 5;
 
 --QUERY for GET route for "anime" DetailsPage
 SELECT "anime"."title", string_agg("genres"."name", ', ') AS "Genres", "anime"."description", "anime"."poster", "anime"."director", "anime"."year_published"  
@@ -201,11 +200,11 @@ SELECT "anime"."title", string_agg("genres"."name", ', ') AS "Genres", "anime"."
   
 --QUERY for GET route for "anime" WatchListPage
 
-SELECT  "user"."id", "watchlist"."user_id", "user"."username", "anime"."title", "anime"."poster", "watchlist"."isWatched", "watchlist"."isLiked" FROM "anime"
-JOIN "watchlist" ON "anime"."id" = "watchlist"."animeList_id"
-JOIN "user" ON "watchlist"."user_id" = "user"."id"
-WHERE "user"."id" = 1
-ORDER BY "user_id";
+SELECT  "watchlist"."id", "watchlist"."user_id", "user"."username", "anime"."title", "anime"."poster", "watchlist"."isWatched", "watchlist"."isLiked" FROM "anime"
+  JOIN "watchlist" ON "anime"."id" = "watchlist"."animeList_id"
+  JOIN "user" ON "watchlist"."user_id" = "user"."id"
+  WHERE "user"."id" = 5
+  ORDER BY "user_id";
 
 --QUERY for DELETE route for "anime" WatchListPage
 DELETE FROM "watchlist" WHERE "id" = 26;
@@ -217,9 +216,19 @@ WHERE "id" = 23;
 UPDATE "watchlist" SET "isLiked"  = TRUE 
 WHERE "id" = 23;
 
+--QUERY for POST route for "anime" WatchListPage
+INSERT INTO "watchlist" ("user_id", "animeList_id")
+VALUES (5,14);
+
 --QUERY for GET route for "genres" GenresPage
 SELECT "genres"."name" AS "Genre", "anime"."id", "anime"."title", "anime"."poster" FROM "genres"
 JOIN "anime_genres" ON "genres"."id"= "anime_genres"."genre_id"
 JOIN "anime" ON "anime_genres"."anime_id" = "anime"."id"
 WHERE "genres"."id" = 1
 ORDER BY "anime"."title" ASC;
+
+--QUERY for POST route for search "anime" 
+
+SELECT * FROM "anime"
+WHERE "title" = 'Akira'
+;
