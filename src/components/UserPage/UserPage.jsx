@@ -24,15 +24,13 @@ function UserPage() {
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
 
-      <h3>Top Rated Anime</h3>
+      <h3 className="pageTitles">Top Rated Anime</h3>
       <div className="anime">
         {topRated.map((topRated) => {
           return (
             <div key={topRated.id}>
               <h4>{topRated.title}</h4>
-              <div>
-                <img src={topRated.poster} />
-              </div>
+              <img src={topRated.poster} />
             </div>
           );
         })}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+//import { useLocation } from 'react-router-dom';
 
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -8,12 +9,15 @@ import { useDispatch } from 'react-redux';
 function SearchForm() {
   const user = useSelector((store) => store.user);
   const [animeSearch, setAnimeSearch] = useState({ title: '' });
+  // const searchParams = new URLSearchParams(location.search);
+  // const query = searchParams.get('q');
+  //const location = useLocation();
   const dispatch = useDispatch();
 
   const handleSearch = (event) => {
     event.preventDefault();
     dispatch({ type: 'SEARCH_ANIME', payload: animeSearch });
-    setAnimeSearch({ title: '' });
+    setAnimeSearch('');
   };
 
   return (
@@ -31,6 +35,7 @@ function SearchForm() {
           <button onClick={handleSearch} value={animeSearch.title}>
             Find ?
           </button>
+          <div>{/* <h1>Search Results for: {query}</h1> */}</div>
         </form>
       </div>
     </div>
