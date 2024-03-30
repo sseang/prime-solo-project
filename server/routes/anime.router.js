@@ -40,31 +40,28 @@ router.get('/search', rejectUnauthenticated, (req, res) => {
   const sqlData = req.body;
   console.log('DATA', sqlData);
   console.log(req.query);
+  console.log(req.query.q);
   console.log(req.query.p);
   let queryText;
-  if (req.query.p) {
+  if (!req.query.q) {
     queryText = `SELECT * FROM "anime"
-    RETURNING "title";`;
+ `;
   } else {
+    // queryText = `SELECT * FROM "anime"
+    // ;`;
     queryText = `SELECT * FROM "anime"
-    ;`;
+     WHERE "title" = $1;`;
+    console.log('query text:', queryText);
   }
 
-  // if (!req.query.p) {
-  //   queryText = `SELECT * FROM "anime"
-  //   WHERE "title" = $1;`;
-  // } else {
-  //   queryText = `SELECT * FROM "anime"
-  //   ;`;
-  // }
   pool
-    //.query(queryText, [sqlData.title])
-    .query(queryText)
+    //.query(queryText)
+    .query(queryText, [req.query.q])
 
     .then((result) => {
       //confirm and label data
       console.log('ANIME RESULTS:', result);
-      res.send(result.rows[0]);
+      res.send(result.rows);
     })
     .catch((err) => {
       console.log('ERROR: Get SEARCH anime', err);

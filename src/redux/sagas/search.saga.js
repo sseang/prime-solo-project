@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // worker Saga: will be fired on "SEARCH" actions
 function* searchAnime(action) {
-  console.log('SEARCH', action.payload);
+  console.log('SEARCH:', action.payload);
   try {
     //passes the favorite_genres and avatar from the payload to the server
     const searchResponse = yield axios.get(

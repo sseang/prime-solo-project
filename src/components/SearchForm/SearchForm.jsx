@@ -8,7 +8,9 @@ import { useDispatch } from 'react-redux';
 
 function SearchForm() {
   const user = useSelector((store) => store.user);
-  const [animeSearch, setAnimeSearch] = useState({ title: '' });
+  //const [animeSearch, setAnimeSearch] = useState({ title: '' });
+  const [animeSearch, setAnimeSearch] = useState([]);
+
   // const searchParams = new URLSearchParams(location.search);
   // const query = searchParams.get('q');
   //const location = useLocation();
@@ -29,8 +31,8 @@ function SearchForm() {
             placeholder="Search Title"
             type="text"
             onChange={(event) =>
-              // setAnimeSearch({ ...animeSearch, title: event.target.value })
-              setAnimeSearch({ ...animeSearch })
+              //setAnimeSearch({ ...animeSearch, title: event.target.value })
+              setAnimeSearch(event.target.value)
             }
           />
           <button onClick={handleSearch} value={animeSearch}>
