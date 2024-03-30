@@ -14,7 +14,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   console.log('REQ', req.params);
 
   // GET route code here
-  const queryText = `SELECT  "user"."id", "watchlist"."user_id", "user"."username", "anime"."title", "anime"."poster", "watchlist"."isWatched", "watchlist"."isLiked" FROM "anime"
+  const queryText = `SELECT  "watchlist"."id", "watchlist"."user_id", "user"."username", "anime"."title", "anime"."poster", "watchlist"."isWatched", "watchlist"."isLiked" FROM "anime"
   JOIN "watchlist" ON "anime"."id" = "watchlist"."animeList_id"
   JOIN "user" ON "watchlist"."user_id" = "user"."id"
   WHERE "user"."id" = $1

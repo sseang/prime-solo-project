@@ -21,12 +21,23 @@ function WatchListPage() {
       <SearchForm />
       <h2>Your Watch List</h2>
       <h3>Welcome, {user.username}!</h3>
-      <span className="watchlist">
+
+      <section className="watchlist">
+        {watchList.map((watchList) => {
+          return (
+            <div key={watchList.id}>
+              <h4>{watchList.title}</h4>
+              <img src={watchList.poster} />
+              <div>
+                <button className="watchlistBtn">Remove from Watchlist</button>
+                {/* TODO- create UPDATE route in watchlist.js  */}
+                <button className="watchlistBtn">LIKE?</button>
+              </div>
+            </div>
+          );
+        })}
         {/* TODO- create DELETE route in watchlist.js */}
-        <button className="watchlistBtn">Remove from Watchlist</button>
-        {/* TODO- create UPDATE route in watchlist.js  */}
-        <button className="watchlistBtn">LIKE?</button>
-      </span>
+      </section>
     </div>
   );
 }
