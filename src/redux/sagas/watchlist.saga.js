@@ -10,7 +10,7 @@ function* fetchWatchList(action) {
     const watchListResponse = yield axios.get(
       `/api/watchlist/${action.payload}`
     );
-    console.log('Fetch Response:', watchListResponse);
+    console.log('Fetch WatchList Response:', watchListResponse);
     // Set the value of the WATCH_LIST reducer:
     yield put({
       type: 'SET_WATCH_LIST',

@@ -8,7 +8,7 @@ function* fetchAnime() {
   try {
     // Get the ANIME:
     const animeResponse = yield axios.get('/api/anime');
-    console.log('Fetch Response:', animeResponse);
+    console.log('Fetch Anime Response:', animeResponse);
     // Set the value of the ANIME reducer:
     yield put({
       type: 'SET_ANIME',
@@ -20,11 +20,11 @@ function* fetchAnime() {
 }
 
 function* fetchTop() {
-  console.log('In the FETCH Anime!');
+  console.log('In the FETCH TOP Anime!');
   try {
     // Get TOP ANIME:
     const animeResponse = yield axios.get('/api/anime/top');
-    console.log('Fetch Response:', animeResponse);
+    console.log('Fetch TOP Response:', animeResponse);
     // Set the value of the TOP_ANIME reducer:
     yield put({
       type: 'SET_TOP_ANIME',
