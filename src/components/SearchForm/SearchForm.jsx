@@ -29,10 +29,11 @@ function SearchForm() {
             placeholder="Search Title"
             type="text"
             onChange={(event) =>
-              setAnimeSearch({ ...animeSearch, title: event.target.value })
+              // setAnimeSearch({ ...animeSearch, title: event.target.value })
+              setAnimeSearch({ ...animeSearch })
             }
           />
-          <button onClick={handleSearch} value={animeSearch.title}>
+          <button onClick={handleSearch} value={animeSearch}>
             Find ?
           </button>
           <div>{/* <h1>Search Results for: {query}</h1> */}</div>

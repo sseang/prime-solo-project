@@ -42,9 +42,9 @@ router.get('/search', rejectUnauthenticated, (req, res) => {
   console.log(req.query);
   console.log(req.query.p);
   let queryText;
-  if (!req.query.p) {
+  if (req.query.p) {
     queryText = `SELECT * FROM "anime"
-    WHERE "title" = $1;`;
+    RETURNING "title";`;
   } else {
     queryText = `SELECT * FROM "anime"
     ;`;
@@ -58,8 +58,8 @@ router.get('/search', rejectUnauthenticated, (req, res) => {
   //   ;`;
   // }
   pool
-    .query(queryText, [sqlData.title])
-    //.query(queryText)
+    //.query(queryText, [sqlData.title])
+    .query(queryText)
 
     .then((result) => {
       //confirm and label data
