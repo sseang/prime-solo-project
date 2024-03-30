@@ -5,9 +5,13 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+//nav to new form
+import { useHistory } from 'react-router-dom';
 
 function SearchForm() {
   const user = useSelector((store) => store.user);
+  const searchId = useSelector((store) => store.anime.searchAnime);
+  console.log('SEARCH ID:', searchId);
   //const [animeSearch, setAnimeSearch] = useState({ title: '' });
   const [animeSearch, setAnimeSearch] = useState([]);
 
@@ -15,11 +19,15 @@ function SearchForm() {
   // const query = searchParams.get('q');
   //const location = useLocation();
   const dispatch = useDispatch();
+  //use push to new page
+  const history = useHistory();
 
   const handleSearch = (event) => {
     event.preventDefault();
     dispatch({ type: 'SEARCH_ANIME', payload: animeSearch });
     setAnimeSearch('');
+    //specify data
+    history.push(`/details${searchId.id}`);
   };
 
   return (

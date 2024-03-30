@@ -61,7 +61,7 @@ router.get('/search', rejectUnauthenticated, (req, res) => {
     .then((result) => {
       //confirm and label data
       console.log('ANIME RESULTS:', result);
-      res.send(result.rows);
+      res.send(result.rows[0]);
     })
     .catch((err) => {
       console.log('ERROR: Get SEARCH anime', err);
