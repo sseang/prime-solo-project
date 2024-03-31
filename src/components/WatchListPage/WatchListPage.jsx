@@ -28,6 +28,10 @@ function WatchListPage() {
             <div key={watchList.id}>
               <h4>{watchList.title}</h4>
               <img src={watchList.poster} />
+              <p className="isWatched">
+                {''}
+                <i>{watchList.isWatched ? 'Previously Viewed' : ''}</i>
+              </p>
               <div>
                 <button className="watchlistBtn">Remove from Watchlist</button>
                 {/* TODO- create UPDATE route in watchlist.js  */}
