@@ -1,21 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useDispatch, useSelector } from 'react-redux';
 import SearchForm from '../SearchForm/SearchForm';
 import './UserPage.css';
 import { useEffect } from 'react';
 
+//nav to new form
+import { useHistory } from 'react-router-dom';
+
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const anime = useSelector((store) => store.anime);
   const topRated = useSelector((store) => store.topRated);
+  let [genresId, setGenresId] = useState('');
+  //use push to new page
+  const history = useHistory();
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({ type: 'FETCH_ANIME' });
     dispatch({ type: 'FETCH_TOP_ANIME' });
   }, []);
+
+  const handleGenres = () => {
+    dispatch({ type: 'FETCH_GENRES', payload: genresId });
+
+    //specify data and push ID
+    console.log('GENRES :', genresId);
+    history.push(`/genres`);
+  };
 
   return (
     <div className="container">
@@ -38,16 +52,39 @@ function UserPage() {
       <h3>Genres</h3>
       {/* TODO- onclick to push to GenresPAge  */}
       <span className="genres">
-        <button className="genresButtons">Action</button>
-        <button className="genresButtons">Adventure</button>
-        <button className="genresButtons">Comedy</button>
-        <button className="genresButtons">Drama</button>
-        <button className="genresButtons">Fantasy</button>
-        <button className="genresButtons">Horror</button>
-        <button className="genresButtons">Psychological</button>
-        <button className="genresButtons">Romance</button>
-        <button className="genresButtons">Sci-Fi</button>
-        <button className="genresButtons">Thriller</button>
+        <button
+          onClick={() => handleGenres(genresId)}
+          className="genresButtons"
+          value={(genresId = 1)}>
+          Action
+        </button>
+        <button onClick={handleGenres} className="genresButtons" value="2">
+          Adventure
+        </button>
+        <button onClick={handleGenres} className="genresButtons" value="3">
+          Comedy
+        </button>
+        <button onClick={handleGenres} className="genresButtons" value="4">
+          Drama
+        </button>
+        <button onClick={handleGenres} className="genresButtons" value="5">
+          Fantasy
+        </button>
+        <button onClick={handleGenres} className="genresButtons" value="6">
+          Horror
+        </button>
+        <button onClick={handleGenres} className="genresButtons" value="7">
+          Psychological
+        </button>
+        <button onClick={handleGenres} className="genresButtons" value="8">
+          Romance
+        </button>
+        <button onClick={handleGenres} className="genresButtons" value="9">
+          Sci-Fi
+        </button>
+        <button onClick={handleGenres} className="genresButtons" value="10">
+          Thriller
+        </button>
       </span>
     </div>
   );

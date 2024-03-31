@@ -42,6 +42,11 @@ function DetailsPage() {
             </div>
             <img src={details.poster} />
             <p className="description">{details.description}</p>
+            <span>
+              <p>Director: {details.director}</p> {''}{' '}
+              <p>Year Published: {details.year_published}</p>
+            </span>
+            <button>Add to Watch List?</button>
             <div>
               <button onClick={handleOnNav} type="btn">
                 Back

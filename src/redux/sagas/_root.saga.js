@@ -7,6 +7,7 @@ import searchSaga from './search.saga';
 import animeSaga from './anime.saga';
 import watchListSaga from './watchlist.saga';
 import detailsSaga from './details.saga';
+import genresSaga from './genres.saga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -24,5 +25,6 @@ export default function* rootSaga() {
     animeSaga(),
     watchListSaga(),
     detailsSaga(),
+    genresSaga(),
   ]);
 }

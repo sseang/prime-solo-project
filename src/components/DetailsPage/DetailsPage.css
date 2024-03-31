@@ -7,3 +7,9 @@ img {
   padding: 15px;
   margin-left: 5px;
 }
+button {
+  text-wrap: wrap;
+  padding: 5px;
+  margin: 5px;
+  margin-left: 5px;
+}

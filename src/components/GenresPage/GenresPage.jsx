@@ -5,6 +5,7 @@ import SearchForm from '../SearchForm/SearchForm';
 
 function GenresPage() {
   const user = useSelector((store) => store.user);
+  const genres = useSelector((store) => store.genres);
   return (
     <div className="container">
       <SearchForm />
