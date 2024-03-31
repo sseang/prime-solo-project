@@ -95,7 +95,7 @@ router.get('/top', rejectUnauthenticated, (req, res) => {
 router.get('/:id', rejectUnauthenticated, (req, res) => {
   console.log('In the GET DETAILS function!');
   const sqlData = req.params;
-  console.log('DATA', sqlData);
+  console.log('Details DATA', sqlData);
 
   const queryText = `SELECT "anime"."id", "anime"."title", string_agg("genres"."name", ', ') AS "Genres", "anime"."description", "anime"."poster", "anime"."director", "anime"."year_published"  
   FROM "genres"
@@ -107,7 +107,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   //needed to specify "anime" above
   pool
     //pass params
-    .query(queryText, [req.params.id])
+    .query(queryText, [sqlData.id])
     //able to get genre data
     //.query(queryText)
 
@@ -119,7 +119,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     //catch errors
 
     .catch((err) => {
-      console.log('Error in GET /api/anime/:id', err);
+      console.log('Error in GET DETAILS /api/anime/:id', err);
       res.sendStatus(500);
     });
 });

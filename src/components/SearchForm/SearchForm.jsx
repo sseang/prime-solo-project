@@ -58,7 +58,7 @@ function SearchForm() {
         </form>
         <div>
           {' '}
-          <h2>Search Results for: {searchId.title}</h2>
+          <h2>Results: {searchId.title}</h2>
           <ul>
             <img onClick={() => handleDetail(searchId)} src={searchId.poster} />
           </ul>

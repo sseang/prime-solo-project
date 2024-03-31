@@ -8,7 +8,7 @@ function* fetchDetails(action) {
   try {
     // Get the DETAILS:
     const detailsResponse = yield axios.get(`/api/anime/${action.payload}`);
-    console.log('Fetch details Response:', detailsResponse);
+    console.log('Fetch details Response:', detailsResponse.data);
     // Set the value of the DETAILS reducer:
     yield put({
       type: 'SET_DETAILS',

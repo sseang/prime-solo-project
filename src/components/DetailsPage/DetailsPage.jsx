@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import './DetailsPage.css';
+
 function DetailsPage() {
   const user = useSelector((store) => store.user);
   const details = useSelector((store) => store.details);
@@ -15,10 +17,10 @@ function DetailsPage() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch({ type: 'FETCH_DETAILS', payload: id });
-  }, []);
-  // TODO- selector for anime
+  // useEffect(() => {
+  //   dispatch({ type: 'FETCH_DETAILS', payload: id });
+  // }, []);
+  // // TODO- selector for anime
 
   const handleOnNav = (event) => {
     console.log('In my NAV');
@@ -29,32 +31,26 @@ function DetailsPage() {
   };
 
   return (
-    <section className="container">
-      <SearchForm />
-      <h2>Welcome, {user.username}!</h2>
-      <h3>Anime Title</h3>
-      <div>
-        {/* TODO-map() here for anime*/}
-        {details.map((details, index) => {
-          return (
-            <pre key={details.id}>
-              <h3>{details.title}</h3>
-              <div>
-                Genres: <p>{details.name}</p>
-              </div>
-              {/* TODO-resize img w/ primeReact!! */}
-              <img src={details.poster} />
-              <p>{details.description}</p>
-            </pre>
-          );
-        })}
-      </div>
-      <div>
-        <button onClick={handleOnNav} type="btn">
-          Back
-        </button>
-      </div>
-    </section>
+    <div>
+      <h2>Details</h2>
+      {details.map((details, index) => {
+        return (
+          <pre key={index}>
+            <h3>{details.title}</h3>
+            <div>
+              Genres: <p>{details.Genres}</p>
+            </div>
+            <img src={details.poster} />
+            <p className="description">{details.description}</p>
+            <div>
+              <button onClick={handleOnNav} type="btn">
+                Back
+              </button>
+            </div>
+          </pre>
+        );
+      })}
+    </div>
   );
 }
 
