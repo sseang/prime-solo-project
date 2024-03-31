@@ -1,14 +1,23 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SearchForm from '../SearchForm/SearchForm';
-
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 function DetailsPage() {
   const user = useSelector((store) => store.user);
-  const history = useHistory();
+  const details = useSelector((store) => store.details);
+  console.log('Details:', details);
+  const id = useParams();
 
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: 'FETCH_DETAILS', payload: id });
+  }, []);
   // TODO- selector for anime
 
   const handleOnNav = (event) => {
@@ -20,29 +29,32 @@ function DetailsPage() {
   };
 
   return (
-    <div className="container">
+    <section className="container">
       <SearchForm />
       <h2>Welcome, {user.username}!</h2>
       <h3>Anime Title</h3>
-      {/* TODO-map() here for anime
-      {details.map((detailData, index) => (
-        <pre key={index}>
-          <h3>{detailData.title}</h3>
-          <div>
-            Genres: <p>{detailData.name}</p>
-          </div>
-          TODO-resize img w/ primeReact!!
-          <img src={detailData.poster} />
-          <p >{detailData.description}</p>
-
-        </pre>
-      ))} */}
+      <div>
+        {/* TODO-map() here for anime*/}
+        {details.map((details, index) => {
+          return (
+            <pre key={details.id}>
+              <h3>{details.title}</h3>
+              <div>
+                Genres: <p>{details.name}</p>
+              </div>
+              {/* TODO-resize img w/ primeReact!! */}
+              <img src={details.poster} />
+              <p>{details.description}</p>
+            </pre>
+          );
+        })}
+      </div>
       <div>
         <button onClick={handleOnNav} type="btn">
           Back
         </button>
       </div>
-    </div>
+    </section>
   );
 }
 

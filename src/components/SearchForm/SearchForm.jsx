@@ -25,11 +25,20 @@ function SearchForm() {
   const handleSearch = (event) => {
     event.preventDefault();
     dispatch({ type: 'SEARCH_ANIME', payload: animeSearch });
-    setAnimeSearch('');
+
     //specify data and push ID
-    history.push(`/details${searchId.id}`);
+    console.log('SEARCH :', searchId.id);
+    //history.push(`/api/details/${searchId.id}`);
+    setAnimeSearch('');
   };
 
+  const handleDetail = (searchId) => {
+    dispatch({ type: 'FETCH_DETAILS', payload: searchId.id });
+
+    //specify data and push ID
+    console.log('SEARCH :', searchId.id);
+    history.push(`/details`);
+  };
   return (
     <div>
       <div>
@@ -46,8 +55,14 @@ function SearchForm() {
           <button onClick={handleSearch} value={animeSearch}>
             Find ?
           </button>
-          <div>{/* <h1>Search Results for: {query}</h1> */}</div>
         </form>
+        <div>
+          {' '}
+          <h2>Search Results for: {searchId.title}</h2>
+          <ul>
+            <img onClick={() => handleDetail(searchId)} src={searchId.poster} />
+          </ul>
+        </div>
       </div>
     </div>
   );

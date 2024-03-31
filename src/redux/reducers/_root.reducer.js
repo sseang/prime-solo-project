@@ -4,6 +4,7 @@ import user from './user.reducer';
 import anime from './anime.reducer';
 import topRated from './topRated.reducer';
 import watchList from './watchlist.reducer';
+import details from './details.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   anime, //store ALL anime
   topRated, //store TOP anime
   watchList, //store WATCHLIST anime
+  details, //store DETAILS anime
 });
 
 export default rootReducer;

@@ -37,8 +37,8 @@ router.get('/search', rejectUnauthenticated, (req, res) => {
 
   //confirm in the function
   console.log('In the GET search function!');
-  const sqlData = req.body;
-  console.log('DATA', sqlData);
+  //const sqlData = req.body;
+  //console.log('DATA', sqlData);
   console.log(req.query);
   console.log(req.query.q);
   console.log(req.query.p);
@@ -93,7 +93,11 @@ router.get('/top', rejectUnauthenticated, (req, res) => {
 
 //GET route for DetailPage SAGA
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-  const queryText = `SELECT "anime"."title", string_agg("genres"."name", ', ') AS "Genres", "anime"."description", "anime"."poster", "anime"."director", "anime"."year_published"  
+  console.log('In the GET DETAILS function!');
+  const sqlData = req.params;
+  console.log('DATA', sqlData);
+
+  const queryText = `SELECT "anime"."id", "anime"."title", string_agg("genres"."name", ', ') AS "Genres", "anime"."description", "anime"."poster", "anime"."director", "anime"."year_published"  
   FROM "genres"
   JOIN "anime_genres" ON "genres"."id"= "anime_genres"."genre_id"
   JOIN "anime" ON "anime_genres"."anime_id" = "anime"."id"
@@ -110,7 +114,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     //success and return
 
     .then((result) => {
-      res.send(result.rows[0]);
+      res.send(result.rows);
     })
     //catch errors
 

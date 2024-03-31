@@ -110,3 +110,14 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
+img {
+  max-width: 300px;
+  max-height: 300px;
+  padding: 10px;
+}
+.anime {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}

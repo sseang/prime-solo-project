@@ -22,21 +22,21 @@ function WatchListPage() {
       <h2>Your Watch List</h2>
       <h3>Welcome, {user.username}!</h3>
 
-      <section className="watchlist">
+      <section className="anime">
         {watchList.map((watchList) => {
           return (
             <div key={watchList.id}>
               <h4>{watchList.title}</h4>
               <img src={watchList.poster} />
-              <p className="isWatched">
-                {''}
-                <i>{watchList.isWatched ? 'Previously Viewed' : ''}</i>
-              </p>
+
               <div>
                 <button className="watchlistBtn">Remove from Watchlist</button>
                 {/* TODO- create UPDATE route in watchlist.js  */}
                 <button className="watchlistBtn">LIKE?</button>
               </div>
+              <p className="isWatched">
+                <i>{watchList.isWatched ? 'Previously Viewed' : ''}</i>
+              </p>
             </div>
           );
         })}
