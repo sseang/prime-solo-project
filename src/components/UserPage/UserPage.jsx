@@ -38,7 +38,7 @@ function UserPage() {
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
 
-      <h3 className="pageTitles">Top Rated Anime</h3>
+      <h2 className="pageTitles">Top Rated Anime</h2>
       <div className="anime">
         {topRated.map((topRated) => {
           return (
@@ -49,7 +49,7 @@ function UserPage() {
           );
         })}
       </div>
-      <h3 className="pageTitles">Genres</h3>
+      <h2 className="pageTitles">Genres</h2>
       {/* TODO- onclick to push to GenresPAge  */}
       <span className="genres">
         <button
