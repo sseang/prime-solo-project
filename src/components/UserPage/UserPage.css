@@ -19,3 +19,9 @@ img {
   flex-wrap: wrap;
   text-align: center;
 }
+
+.pageTitles {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+}

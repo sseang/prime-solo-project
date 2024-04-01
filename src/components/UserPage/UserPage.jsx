@@ -49,7 +49,7 @@ function UserPage() {
           );
         })}
       </div>
-      <h3>Genres</h3>
+      <h3 className="pageTitles">Genres</h3>
       {/* TODO- onclick to push to GenresPAge  */}
       <span className="genres">
         <button
