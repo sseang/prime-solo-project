@@ -36,7 +36,7 @@ function SearchForm() {
     dispatch({ type: 'FETCH_DETAILS', payload: searchId.id });
 
     //specify data and push ID
-    console.log('SEARCH :', searchId.id);
+    console.log('DETAILS ID :', searchId.id);
     history.push(`/details`);
   };
   return (

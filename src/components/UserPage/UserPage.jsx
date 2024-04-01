@@ -31,6 +31,13 @@ function UserPage() {
     history.push(`/genres`);
   };
 
+  const handleTopRatedDetail = (topRated) => {
+    dispatch({ type: 'FETCH_DETAILS', payload: topRated.id });
+
+    //specify data and push ID
+    console.log('TOP RATED ID :', topRated.id);
+    history.push(`/details`);
+  };
   return (
     <div className="container">
       {/* TODO-need to fix searchSaga */}
@@ -44,7 +51,10 @@ function UserPage() {
           return (
             <div key={topRated.id}>
               <h4>{topRated.title}</h4>
-              <img src={topRated.poster} />
+              <img
+                onClick={() => handleTopRatedDetail(topRated)}
+                src={topRated.poster}
+              />
             </div>
           );
         })}

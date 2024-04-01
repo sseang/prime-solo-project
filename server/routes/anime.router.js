@@ -114,6 +114,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     //success and return
 
     .then((result) => {
+      console.log('Details Results!:', result);
       res.send(result.rows);
     })
     //catch errors
