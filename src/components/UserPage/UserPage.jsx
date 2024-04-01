@@ -54,7 +54,6 @@ function UserPage() {
       <span className="genres">
         <button
           onClick={() => handleGenres(genresId)}
-          set
           className="genresButtons"
           value={(genresId = 1)}>
           Action
