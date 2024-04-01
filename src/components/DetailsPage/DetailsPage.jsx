@@ -5,6 +5,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Image } from 'primereact/image';
 
 import './DetailsPage.css';
 
@@ -40,15 +41,15 @@ function DetailsPage() {
             <div>
               Genres: <p>{details.Genres}</p>
             </div>
-            <img src={details.poster} />
+            <Image src={details.poster} alt="Image" preview />
             <p className="description">{details.description}</p>
             <span>
               <p>Director: {details.director}</p> {''}{' '}
               <p>Year Published: {details.year_published}</p>
             </span>
-            <button>Add to Watch List?</button>
+            <button className="detailBtn">Add to Watch List?</button>
             <div>
-              <button onClick={handleOnNav} type="btn">
+              <button className="detailBtn" onClick={handleOnNav} type="btn">
                 Back
               </button>
             </div>
