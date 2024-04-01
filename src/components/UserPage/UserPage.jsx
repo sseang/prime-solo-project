@@ -25,7 +25,7 @@ function UserPage() {
 
   const handleGenres = () => {
     dispatch({ type: 'FETCH_GENRES', payload: genresId });
-
+    setGenresId('');
     //specify data and push ID
     console.log('GENRES :', genresId);
     history.push(`/genres`);
@@ -54,35 +54,63 @@ function UserPage() {
       <span className="genres">
         <button
           onClick={() => handleGenres(genresId)}
+          set
           className="genresButtons"
           value={(genresId = 1)}>
           Action
         </button>
-        <button onClick={handleGenres} className="genresButtons" value="2">
+        <button
+          onClick={() => handleGenres((genresId = genresId + 1))}
+          className="genresButtons"
+          value={genresId + 1}>
           Adventure
         </button>
-        <button onClick={handleGenres} className="genresButtons" value="3">
+        <button
+          onClick={() => handleGenres((genresId = genresId + 2))}
+          className="genresButtons"
+          value={genresId + 2}>
           Comedy
         </button>
-        <button onClick={handleGenres} className="genresButtons" value="4">
+        <button
+          onClick={() => handleGenres((genresId = genresId + 3))}
+          className="genresButtons"
+          value={genresId + 3}>
           Drama
         </button>
-        <button onClick={handleGenres} className="genresButtons" value="5">
+        <button
+          onClick={() => handleGenres((genresId = genresId + 4))}
+          className="genresButtons"
+          value={genresId + 4}>
           Fantasy
         </button>
-        <button onClick={handleGenres} className="genresButtons" value="6">
+        <button
+          onClick={() => handleGenres((genresId = genresId + 5))}
+          className="genresButtons"
+          value={genresId + 5}>
           Horror
         </button>
-        <button onClick={handleGenres} className="genresButtons" value="7">
+        <button
+          onClick={() => handleGenres((genresId = genresId + 6))}
+          className="genresButtons"
+          value={genresId + 6}>
           Psychological
         </button>
-        <button onClick={handleGenres} className="genresButtons" value="8">
+        <button
+          onClick={() => handleGenres((genresId = genresId + 7))}
+          className="genresButtons"
+          value={genresId + 7}>
           Romance
         </button>
-        <button onClick={handleGenres} className="genresButtons" value="9">
+        <button
+          onClick={() => handleGenres((genresId = genresId + 8))}
+          className="genresButtons"
+          value={genresId + 8}>
           Sci-Fi
         </button>
-        <button onClick={handleGenres} className="genresButtons" value="10">
+        <button
+          onClick={() => handleGenres((genresId = genresId + 9))}
+          className="genresButtons"
+          value={genresId + 9}>
           Thriller
         </button>
       </span>
