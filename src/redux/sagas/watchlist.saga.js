@@ -21,8 +21,28 @@ function* fetchWatchList(action) {
   }
 }
 
+function* updateWatchListSaga(action) {
+  console.log('running POST SAGA:', action);
+
+  // try catch block
+  try {
+    // POST a new element to server
+    yield axios({
+      method: 'POST',
+      url: '/api/watchlist',
+      data: action.payload,
+    });
+    // dispatch to refresh GET
+    // yield put({ type: 'FETCH_WATCH_LIST' });
+  } catch (error) {
+    // error surface to user
+    console.log('ERROR ADDING WATCH_LIST:', error);
+  }
+}
+
 function* watchListSaga() {
   yield takeEvery('FETCH_WATCH_LIST', fetchWatchList);
+  yield takeEvery('ADD_WATCH_LIST', updateWatchListSaga);
 }
 
 export default watchListSaga;

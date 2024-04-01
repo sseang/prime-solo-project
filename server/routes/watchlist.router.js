@@ -99,14 +99,14 @@ router.put('/:id', rejectUnauthenticated, (req, res, next) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   // POST route code here
   //confirm in the function
   console.log('In the POST watchlist function!');
-  const userId = req.params.id;
+  //const userId = req.params.id;
   const sqlData = req.body;
   //comfirm data
-  console.log('USER', userId);
+  //console.log('USER', userId);
   console.log('Body', sqlData);
 
   const queryText = `INSERT INTO "watchlist" ("user_id", "animeList_id")
