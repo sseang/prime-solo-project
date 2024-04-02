@@ -33,7 +33,7 @@ function* updateWatchListSaga(action) {
       data: action.payload,
     });
     // dispatch to refresh GET
-    // yield put({ type: 'FETCH_WATCH_LIST' });
+    yield put({ type: 'FETCH_WATCH_LIST' });
   } catch (error) {
     // error surface to user
     console.log('ERROR ADDING WATCH_LIST:', error);

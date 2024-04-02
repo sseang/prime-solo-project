@@ -21,6 +21,7 @@ function UserPage() {
   useEffect(() => {
     dispatch({ type: 'FETCH_ANIME' });
     dispatch({ type: 'FETCH_TOP_ANIME' });
+    dispatch({ type: 'FETCH_WATCH_LIST', payload: user.id });
   }, []);
 
   const handleGenres = () => {

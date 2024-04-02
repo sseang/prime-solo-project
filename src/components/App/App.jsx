@@ -33,6 +33,7 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: 'FETCH_WATCH_LIST', payload: user.id });
   }, [dispatch]);
 
   return (
