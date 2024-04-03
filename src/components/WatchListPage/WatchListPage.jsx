@@ -13,8 +13,6 @@ function WatchListPage() {
 
   useEffect(() => {
     getWatchList();
-    console.log('WATCH_LIST', watchList);
-    console.log('USER_LIST', user);
   }, []);
 
   const getWatchList = () => {
@@ -22,6 +20,8 @@ function WatchListPage() {
   };
 
   const deleteAnimeItem = (watchList) => {
+    console.log('WATCH_LIST', watchList);
+    console.log('USER_LIST', user);
     dispatch({ type: 'DELETE_WATCH_LIST_ITEM', payload: watchList.id });
     console.log('In the DELETE watch list function!', watchList.id);
     //alt method to send data dispatch({ type: 'DELETE_PLANT', payload: { id: plant.id } });

@@ -14,6 +14,7 @@ function* fetchGenres(action) {
       type: 'SET_GENRES',
       payload: genresResponse.data,
     });
+    yield put({ type: 'FETCH_USER' });
   } catch (error) {
     console.log('fetchAllGENRES error:', error);
   }
