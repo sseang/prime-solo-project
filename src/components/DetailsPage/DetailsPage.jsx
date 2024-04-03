@@ -12,7 +12,10 @@ import './DetailsPage.css';
 function DetailsPage() {
   const user = useSelector((store) => store.user);
   const details = useSelector((store) => store.details);
+  const watchList = useSelector((store) => store.watchList);
+
   console.log('Details:', details);
+  //not needed now?
   const id = useParams();
   let [newAnime, setNewAnime] = useState({
     user_id: user.id,
@@ -73,6 +76,12 @@ function DetailsPage() {
             <button
               onClick={() => addToWatchListHandle(details)}
               className="detailBtn">
+              {/* TODO-Add conditional for remove from watch list*/}
+              {/* {details.id === watchList.animeList_id && (
+                <p>
+                  <i>Remove from Watch List?</i>
+                </p>
+              )} */}
               Add to Watch List?
             </button>
             <div>

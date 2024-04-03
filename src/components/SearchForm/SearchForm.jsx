@@ -25,7 +25,6 @@ function SearchForm() {
   const handleSearch = (event) => {
     event.preventDefault();
     dispatch({ type: 'SEARCH_ANIME', payload: animeSearch });
-
     //specify data and push ID
     console.log('SEARCH :', searchId.id);
     //history.push(`/api/details/${searchId.id}`);

@@ -44,16 +44,17 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
   //confirm in the function
   console.log('In the DELETE watchlist function!');
 
-  const watchlistId = req.params.id;
+  const watchlistId = req.params;
   //confirm data
   console.log('WATCHLIST ID!:', watchlistId);
 
-  const queryText = `DELETE FROM "watchlist" WHERE "id" = $1;`;
+  const queryText = `DELETE FROM "watchlist" WHERE "id" = $1
+  RETURNING "user_id";`;
 
   pool
-    .query(queryText, [watchlistId])
-    .then((response) => {
-      res.sendStatus(200);
+    .query(queryText, [req.params.id])
+    .then((result) => {
+      res.send(result.rows);
     })
     .catch((err) => {
       console.error(err);

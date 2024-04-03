@@ -10,11 +10,22 @@ function WatchListPage() {
   const user = useSelector((store) => store.user);
   const watchList = useSelector((store) => store.watchList);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch({ type: 'FETCH_WATCH_LIST', payload: user.id });
+    getWatchList();
     console.log('WATCH_LIST', watchList);
     console.log('USER_LIST', user);
   }, []);
+
+  const getWatchList = () => {
+    dispatch({ type: 'FETCH_WATCH_LIST', payload: user.id });
+  };
+
+  const deletePlant = (watchList) => {
+    dispatch({ type: 'DELETE_WATCH_LIST_ITEM', payload: watchList.id });
+    console.log('In the DELETE watch list function!', watchList.id);
+    //alt method to send data dispatch({ type: 'DELETE_PLANT', payload: { id: plant.id } });
+  };
 
   return (
     <div className="container">
@@ -30,7 +41,11 @@ function WatchListPage() {
               <img src={watchList.poster} />
 
               <div>
-                <button className="watchlistBtn">Remove from Watchlist</button>
+                <button
+                  className="watchlistBtn"
+                  onClick={() => deletePlant(watchList)}>
+                  Remove from Watch List?
+                </button>
                 {/* TODO- create UPDATE route in watchlist.js  */}
                 <button className="watchlistBtn">LIKE?</button>
               </div>

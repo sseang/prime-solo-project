@@ -39,15 +39,40 @@ function* updateWatchListSaga(action) {
       type: 'FETCH_WATCH_LIST',
       payload: postResponse.data[0].user_id,
     });
+    alert('Title added to Watch List!');
   } catch (error) {
     // error surface to user
     console.log('ERROR ADDING WATCH_LIST:', error);
   }
 }
 
+function* deleteAnimeSaga(action) {
+  console.log('running DELETE SAGA:', action);
+  // try catch block
+  try {
+    // DELETE plant from server
+    const deleteResponse = yield axios({
+      method: 'DELETE',
+      //url back ticks struture convention for call to server
+      url: `/api/watchlist/${action.payload}`,
+    });
+
+    console.log('Fetch DELETE WatchList Response:', deleteResponse);
+    alert('Title Removed from Watch List!');
+    yield put({
+      type: 'FETCH_WATCH_LIST',
+      payload: deleteResponse.data[0].user_id,
+    });
+  } catch (error) {
+    // error surface to user
+    console.log('ERROR DELETING WATCH_LIST:', error);
+  }
+}
+
 function* watchListSaga() {
   yield takeEvery('FETCH_WATCH_LIST', fetchWatchList);
   yield takeEvery('ADD_WATCH_LIST', updateWatchListSaga);
+  yield takeEvery('DELETE_WATCH_LIST_ITEM', deleteAnimeSaga);
 }
 
 export default watchListSaga;
