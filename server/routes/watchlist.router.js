@@ -78,12 +78,12 @@ router.put('/:id', rejectUnauthenticated, (req, res, next) => {
     .query(queryText, [watchlistId])
     .then((isWatchedResponse) => {
       //confirm and label data
-      console.log('isWatched RESULTS:', sqlData);
+      console.log('isWatched RESULTS:', sqlData, isWatchedResponse);
       pool
         .query(queryText2, [watchlistId])
         .then((isLikedResponse) => {
           //confirm and label data
-          console.log('isliked RESULTS:', watchlistId);
+          console.log('isliked RESULTS:', watchlistId, isLikedResponse);
           res.sendStatus(201);
         })
         .catch((err) => {

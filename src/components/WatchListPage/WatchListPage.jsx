@@ -21,10 +21,15 @@ function WatchListPage() {
     dispatch({ type: 'FETCH_WATCH_LIST', payload: user.id });
   };
 
-  const deletePlant = (watchList) => {
+  const deleteAnimeItem = (watchList) => {
     dispatch({ type: 'DELETE_WATCH_LIST_ITEM', payload: watchList.id });
     console.log('In the DELETE watch list function!', watchList.id);
     //alt method to send data dispatch({ type: 'DELETE_PLANT', payload: { id: plant.id } });
+  };
+
+  const handleUpdateLike = (watchList) => {
+    dispatch({ type: 'UPDATE_ITEM', payload: watchList.id });
+    console.log('In the UPDATE LIKE function!', watchList.id);
   };
 
   return (
@@ -43,11 +48,15 @@ function WatchListPage() {
               <div>
                 <button
                   className="watchlistBtn"
-                  onClick={() => deletePlant(watchList)}>
+                  onClick={() => deleteAnimeItem(watchList)}>
                   Remove from Watch List?
                 </button>
                 {/* TODO- create UPDATE route in watchlist.js  */}
-                <button className="watchlistBtn">LIKE?</button>
+                <button
+                  className="watchlistBtn"
+                  onClick={() => handleUpdateLike(watchList)}>
+                  LIKE?
+                </button>
               </div>
               <p className="isWatched">
                 <i>{watchList.isWatched ? 'Previously Viewed' : ''}</i>

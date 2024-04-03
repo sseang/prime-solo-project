@@ -69,10 +69,24 @@ function* deleteAnimeSaga(action) {
   }
 }
 
+function* updateLiKeItem(action) {
+  console.log('In the UPDATE LIKE Funtion!');
+  try {
+    // UPDATE the LIKE WATCH_LIST:
+    const likeResponse = yield axios.put(`/api/watchlist/${action.payload}`);
+    console.log('UPDATE LIKE WatchList Response:', likeResponse);
+    // Set the value of the WATCH_LIST reducer:
+    alert('You LIKED this Anime!');
+  } catch (error) {
+    console.log('ERROR UPDATING LIKE WATCH_LIST:', error);
+  }
+}
+
 function* watchListSaga() {
   yield takeEvery('FETCH_WATCH_LIST', fetchWatchList);
   yield takeEvery('ADD_WATCH_LIST', updateWatchListSaga);
   yield takeEvery('DELETE_WATCH_LIST_ITEM', deleteAnimeSaga);
+  yield takeEvery('UPDATE_ITEM', updateLiKeItem);
 }
 
 export default watchListSaga;
