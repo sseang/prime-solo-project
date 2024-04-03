@@ -51,17 +51,17 @@ function WatchListPage() {
                   onClick={() => deleteAnimeItem(watchList)}>
                   Remove from Watch List?
                 </button>
-                <div>
-                  {watchList.isLiked ? (
-                    <p>You Liked this Anime!</p>
-                  ) : (
-                    <button
-                      className="watchlistBtn"
-                      onClick={() => handleUpdateLike(watchList)}>
-                      LIKE?
-                    </button>
-                  )}
-                </div>
+
+                {watchList.isLiked ? (
+                  <p>You Liked this Anime!</p>
+                ) : (
+                  <button
+                    className="watchlistBtn"
+                    onClick={() => handleUpdateLike(watchList)}>
+                    LIKE?
+                  </button>
+                )}
+
                 {/* TODO- create UPDATE route in watchlist.js  */}
               </div>
               <p className="isWatched">

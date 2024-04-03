@@ -33,13 +33,14 @@ function* updateWatchListSaga(action) {
       data: action.payload,
     });
     // dispatch to refresh GET
-    console.log('Fetch WatchList Response:', postResponse);
+    console.log('POST Anime Response:', postResponse);
 
-    yield put({
-      type: 'FETCH_WATCH_LIST',
-      payload: postResponse.data[0].user_id,
-    });
+    // yield put({
+    //   type: 'FETCH_WATCH_LIST',
+    //   payload: postResponse.data[0].user_id,
+    // });
     alert('Title added to Watch List!');
+    yield put({ type: 'FETCH_USER' });
   } catch (error) {
     // error surface to user
     console.log('ERROR ADDING WATCH_LIST:', error);
@@ -59,10 +60,11 @@ function* deleteAnimeSaga(action) {
 
     console.log('Fetch DELETE WatchList Response:', deleteResponse);
     alert('Title Removed from Watch List!');
-    yield put({
-      type: 'FETCH_WATCH_LIST',
-      payload: deleteResponse.data[0].user_id,
-    });
+    // yield put({
+    //   type: 'FETCH_WATCH_LIST',
+    //   payload: deleteResponse.data[0].user_id,
+    // });
+    yield put({ type: 'FETCH_USER' });
   } catch (error) {
     // error surface to user
     console.log('ERROR DELETING WATCH_LIST:', error);
@@ -77,6 +79,7 @@ function* updateLiKeItem(action) {
     console.log('UPDATE LIKE WatchList Response:', likeResponse);
     // Set the value of the WATCH_LIST reducer:
     alert('You LIKED this Anime!');
+    yield put({ type: 'FETCH_USER' });
   } catch (error) {
     console.log('ERROR UPDATING LIKE WATCH_LIST:', error);
   }

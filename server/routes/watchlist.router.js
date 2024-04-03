@@ -65,7 +65,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 router.put('/:id', rejectUnauthenticated, (req, res, next) => {
   //confirm in the function
   console.log('In the UPDATE watchlist function!');
-  const watchlistId = req.params.id;
+  const watchlistId = req.params;
   const sqlData = req.body;
   //comfirm data
   console.log(watchlistId);
@@ -75,12 +75,12 @@ router.put('/:id', rejectUnauthenticated, (req, res, next) => {
   const queryText2 = `UPDATE "watchlist" SET "isLiked" = TRUE WHERE "id" = $1;`;
 
   pool
-    .query(queryText, [watchlistId])
+    .query(queryText, [req.params.id])
     .then((isWatchedResponse) => {
       //confirm and label data
       console.log('isWatched RESULTS:', sqlData, isWatchedResponse);
       pool
-        .query(queryText2, [watchlistId])
+        .query(queryText2, [req.params.id])
         .then((isLikedResponse) => {
           //confirm and label data
           console.log('isliked RESULTS:', watchlistId, isLikedResponse);

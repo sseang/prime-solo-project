@@ -50,14 +50,13 @@ function SearchForm() {
               //setAnimeSearch({ ...animeSearch, title: event.target.value })
               setAnimeSearch(event.target.value)
             }
+            value={animeSearch}
           />
-          <button onClick={handleSearch} value={animeSearch}>
-            Find ?
-          </button>
+          <button onClick={handleSearch}>Find ?</button>
         </form>
         <div>
           {' '}
-          <h2>Results: {searchId.title}</h2>
+          <h2>Search Results: {searchId.title}</h2>
           <ul>
             <img onClick={() => handleDetail(searchId)} src={searchId.poster} />
           </ul>
