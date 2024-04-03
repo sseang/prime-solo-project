@@ -111,16 +111,16 @@ router.post('/', (req, res, next) => {
 
   const queryText = `INSERT INTO "watchlist" ("user_id", "animeList_id")
   VALUES ($1, $2)
-  RETURNING "id";`;
+  RETURNING "user_id";`;
 
   const queryArgs = [sqlData.user_id, sqlData.animeList_id];
 
   pool
     .query(queryText, [req.body.user_id, req.body.animeList_id])
-    .then((isWatchedResponse) => {
+    .then((result) => {
       //confirm and label data
-      console.log('POSTED Watchlist:', isWatchedResponse);
-      res.sendStatus(201);
+      console.log('POSTED Watchlist:', result.rows[0].user_id);
+      res.send(result.rows);
     })
     .catch((err) => {
       console.log('OH NO!!! POST failed!: ', err);

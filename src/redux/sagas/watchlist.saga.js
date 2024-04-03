@@ -27,13 +27,18 @@ function* updateWatchListSaga(action) {
   // try catch block
   try {
     // POST a new element to server
-    yield axios({
+    const postResponse = yield axios({
       method: 'POST',
       url: '/api/watchlist',
       data: action.payload,
     });
     // dispatch to refresh GET
-    yield put({ type: 'FETCH_WATCH_LIST' });
+    console.log('Fetch WatchList Response:', postResponse);
+
+    yield put({
+      type: 'FETCH_WATCH_LIST',
+      payload: postResponse.data[0].user_id,
+    });
   } catch (error) {
     // error surface to user
     console.log('ERROR ADDING WATCH_LIST:', error);
