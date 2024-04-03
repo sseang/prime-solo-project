@@ -76,7 +76,7 @@ router.get('/top', rejectUnauthenticated, (req, res) => {
   SELECT COUNT("watchlist"."isLiked") AS "TOP Rated Anime", "anime"."id", "anime"."title", "anime"."poster" FROM "anime"
   JOIN "watchlist" ON "anime"."id" = "watchlist"."animeList_id"
   GROUP BY "anime"."id" 
-  ORDER BY "TOP Rated Anime" DESC LIMIT 5
+  ORDER BY "TOP Rated Anime" DESC LIMIT 6
 `;
   pool
     .query(queryText)

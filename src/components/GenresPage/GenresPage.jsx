@@ -2,12 +2,15 @@ import React from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import SearchForm from '../SearchForm/SearchForm';
+//nav to new form
+import { useHistory } from 'react-router-dom';
 
 function GenresPage() {
   const user = useSelector((store) => store.user);
   const genres = useSelector((store) => store.genres);
   const watchList = useSelector((store) => store.watchList);
   const dispatch = useDispatch();
+  const history = useHistory();
   console.log('Genres!:', genres);
 
   // useEffect(() => {
@@ -22,9 +25,15 @@ function GenresPage() {
       type: 'ADD_WATCH_LIST',
       payload: { user_id: user.id, animeList_id: genres.id },
     });
-
     //specify data and push ID
     console.log('UPDATE WATCH_LIST :', user.id, genres.id);
+  };
+
+  const handleGenresDetail = (genres) => {
+    dispatch({ type: 'FETCH_DETAILS', payload: genres.id });
+    //specify data and push ID
+    console.log('GENRES ID :', genres.id);
+    history.push(`/details`);
   };
 
   return (
@@ -37,7 +46,10 @@ function GenresPage() {
             <div key={genres.id}>
               <h2>{genres.Genre}</h2>
               <h4>{genres.title}</h4>
-              <img src={genres.poster} />
+              <img
+                onClick={() => handleGenresDetail(genres)}
+                src={genres.poster}
+              />
               <div>
                 <button
                   className="genresBtn"
