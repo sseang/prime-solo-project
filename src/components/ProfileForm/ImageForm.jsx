@@ -8,20 +8,29 @@ function ImageForm() {
   // });
   let [imagePath, setImagePath] = useState('');
   let [imageList, setImageList] = useState([]);
-
+  //let imagePath = useSelector((store) => store.imagePathReducer);
+  //let dispatch = useDispatch();
   const onFileChange = async (event) => {
     // Access the selected file
     const fileToUpload = event.target.files[0];
 
     // Limit to specific file types.
-    const acceptedImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+    const acceptedImageTypes = [
+      'image/gif',
+      'image/jpeg',
+      'image/png',
+      'image/jpg',
+    ];
 
     // Check if the file is one of the allowed types.
     if (acceptedImageTypes.includes(fileToUpload.type)) {
       const formData = new FormData();
       formData.append('file', fileToUpload);
-      formData.append('upload_preset', process.env.REACT_APP_PRESET);
-      let postUrl = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`;
+      console.log('meta.env: ', import.meta.env.VITE_CLOUD_NAME);
+      formData.append('upload_preset', import.meta.env.VITE_PRESET);
+      let postUrl = `https://api.cloudinary.com/v1_1/${
+        import.meta.env.VITE_CLOUD_NAME
+      }/image/upload`;
       axios
         .post(postUrl, formData)
         .then((response) => {
