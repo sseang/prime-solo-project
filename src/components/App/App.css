@@ -7,7 +7,7 @@ body,
 body {
   background-image: url('https://images6.alphacoders.com/785/785425.png');
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #08efeb;
+  color: #0598f3;
   margin: 0px;
 }
 
@@ -34,7 +34,7 @@ Button
   border-color: #014041;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: #0598f3;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -57,7 +57,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #65b7f5;
   text-decoration: none;
 }
 
@@ -65,17 +65,17 @@ Button
 .btn_asLink {
   padding: 0;
   border-width: 0;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid #0598f3;
   border-radius: 0;
   background: none;
   font: inherit;
-  color: #444;
+  color: #0598f3;
 }
 
 .btn_asLink:hover {
   background-color: transparent;
   border-color: #008183;
-  color: #008183;
+  color: #65b7f5;
 }
 
 /* --------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ Form Treatment
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: #efefef;
+  background-color: #f6c1f1;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }
