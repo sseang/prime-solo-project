@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
 function ProfileForm() {
@@ -15,18 +15,74 @@ function ProfileForm() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const userProfile = (id) => {
-    event.preventDefault();
-    console.log('In the PROFILE function!');
+  let [imagePath, setImagePath] = useState('');
+  //let [imageList, setImageList] = useState([]);
+  //let imagePath = useSelector((store) => store.imagePathReducer);
+  //let dispatch = useDispatch();
+  const onFileChange = async (event) => {
+    // Access the selected file
+    const fileToUpload = event.target.files[0];
 
-    dispatch({
-      type: 'UPDATE_USER',
-      payload: {
-        id: user.id,
-        favorite_genres: favorite,
-        avatar: avatar,
-      },
-    });
+    // Limit to specific file types.
+    const acceptedImageTypes = [
+      'image/gif',
+      'image/jpeg',
+      'image/png',
+      'image/jpg',
+    ];
+
+    // Check if the file is one of the allowed types.
+    if (acceptedImageTypes.includes(fileToUpload.type)) {
+      const formData = new FormData();
+      formData.append('file', fileToUpload);
+      console.log('meta.env: ', import.meta.env.VITE_CLOUD_NAME);
+      formData.append('upload_preset', import.meta.env.VITE_PRESET);
+      let postUrl = `https://api.cloudinary.com/v1_1/${
+        import.meta.env.VITE_CLOUD_NAME
+      }/image/upload`;
+      axios
+        .post(postUrl, formData)
+        .then((response) => {
+          console.log('Success!', response);
+          setImagePath(response.data.url);
+          setAvatar();
+          dispatch({
+            type: 'UPDATE_USER',
+            payload: {
+              id: user.id,
+              favorite_genres: favorite,
+              avatar: response.data.url,
+            },
+          });
+        })
+        .catch((error) => {
+          console.log('error', error);
+          alert('Something went wrong');
+        });
+    } else {
+      alert('Please select an image');
+    }
+  };
+
+  // const sendPhotoToServer = (event) => {
+  //   event.preventDefault();
+  //   // Send image path to YOUR server
+  //   axios
+  //     .post('/api/photos', { path: imagePath })
+  //     .then((response) => {
+  //       setAvatar();
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //       alert('Something went wrong!');
+  //     });
+  // };
+
+  const userProfile = (id) => {
+    //event.preventDefault();
+    console.log('In the PROFILE function!');
+    dispatch({ type: 'FETCH_USER' });
+    alert('Profile Updated!!');
     history.push('/user');
   }; // end registerUser
 
@@ -69,19 +125,32 @@ function ProfileForm() {
       <div>
         <label htmlFor="avatar">
           Upload Avatar:
-          <input
+          {/* <input
             type="text"
             name="avatar"
             value={avatar}
             required
             onChange={(event) => setAvatar(event.target.value)}
-          />
+          /> */}
           {/* TODO- need to add AWS S3 bucket to hold upload */}
-          <button>Browse File</button>
+          <input type="file" accept="image/*" onChange={onFileChange} />
+          <br />
+          {imagePath === '' ? (
+            <p>Would you like to add an image?</p>
+          ) : (
+            <img style={{ maxWidth: '150px' }} src={imagePath} />
+          )}
+          <br />
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Submit" />
+        <input
+          //onClick={() => sendPhotoToServer(avatar)}
+          className="btn"
+          type="submit"
+          name="submit"
+          value="Submit"
+        />
       </div>
     </form>
   );

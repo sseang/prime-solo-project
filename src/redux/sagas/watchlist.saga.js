@@ -78,7 +78,7 @@ function* updateLiKeItem(action) {
     const likeResponse = yield axios.put(`/api/watchlist/${action.payload}`);
     console.log('UPDATE LIKE WatchList Response:', likeResponse);
     // Set the value of the WATCH_LIST reducer:
-    alert('You LIKED this Anime!');
+
     yield put({ type: 'FETCH_USER' });
   } catch (error) {
     console.log('ERROR UPDATING LIKE WATCH_LIST:', error);

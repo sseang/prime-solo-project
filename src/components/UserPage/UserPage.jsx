@@ -43,9 +43,12 @@ function UserPage() {
     <div className="container">
       {/* TODO-need to fix searchSaga */}
       <SearchForm />
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-
+      <div>
+        <h2>Welcome, {user.username}!</h2>
+        <img src={user.avatar} />
+        <p>Your ID is: {user.id}</p>
+        <b>Favorite Genres: {user.favorite_genres}</b>
+      </div>
       <h2 className="pageTitles">Top Rated Anime</h2>
       <div className="anime">
         {topRated.map((topRated) => {

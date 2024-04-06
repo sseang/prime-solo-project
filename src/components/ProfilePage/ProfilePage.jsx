@@ -2,15 +2,15 @@ import React from 'react';
 
 import { useHistory } from 'react-router-dom';
 import ProfileForm from '../ProfileForm/ProfileForm';
-import ImageForm from '../ProfileForm/ImageForm';
+//import ImageForm from '../ProfileForm/ImageForm';
 
 function ProfilePage() {
   const history = useHistory();
 
   return (
     <div>
-      {/* <ProfileForm /> */}
-      <ImageForm />
+      <ProfileForm />
+      {/* <ImageForm /> */}
 
       <center>
         <button
