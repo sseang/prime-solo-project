@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const animeRouter = require('./routes/anime.router');
 const watchlistRouter = require('./routes/watchlist.router');
 const genresRouter = require('./routes/genres.router');
+const imageRouter = require('./routes/image.router');
 
 // Express Middleware
 app.use(express.json());
@@ -30,6 +31,7 @@ app.use('/api/user', userRouter);
 app.use('/api/anime', animeRouter);
 app.use('/api/watchlist', watchlistRouter);
 app.use('/api/genres', genresRouter);
+app.use('/api/photos', imageRouter);
 
 // Listen Server & Port
 app.listen(PORT, () => {
