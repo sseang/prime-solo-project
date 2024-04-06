@@ -12,11 +12,22 @@ CREATE TABLE "user" (
     "avatar" TEXT 
 );
 
+
 --user junction 
 
 CREATE TABLE "user_profile" (
 	"id" SERIAL PRIMARY KEY,
 	"username" VARCHAR (80)UNIQUE NOT NULL);
+	
+CREATE TABLE "images" (
+	"id" SERIAL PRIMARY KEY,
+	"path" VARCHAR(2048) NOT NULL
+);	
+
+--test data
+
+INSERT INTO "images" ("path")
+VALUES ('images/trigun.jpg');
 
 --anime table
 
@@ -163,7 +174,7 @@ VALUES
 INSERT INTO "watchlist" ("user_id", "animeList_id")
 VALUES 
 
-(5,20), (5,19), (5,18), (5,17), (5,16), --Bill
+(5,20), (5,19), (5,18), (5,17), (5,16); --Bill
 (4,15), (4,14), (4,13), (4,12), (4,11), --PhoMaster
 (3,10), (3,9), (3,8), (3,7), (3,6), --Sky Captain
 (2,5), (2,4), (2,3), (2,2), (2,1), --Naruto
@@ -171,6 +182,7 @@ VALUES
 
 INSERT INTO "watchlist" ("user_id", "animeList_id")
 VALUES (1,9), (1,7);
+
 --QUERY for PUT route for "user" update at ProfileForm
 UPDATE "user" SET "favorite_genres" = 'Horror' WHERE "id" = 5;
 UPDATE "user" SET "avatar" = 'TEST' WHERE "id" = 5;
@@ -232,3 +244,7 @@ ORDER BY "anime"."title" ASC;
 SELECT * FROM "anime"
 WHERE "title" = 'Akira'
 ;
+
+INSERT INTO "watchlist" ("user_id", "animeList_id")
+  VALUES (5, 10)
+  RETURNING "user_id";
