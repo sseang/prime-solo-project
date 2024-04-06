@@ -40,7 +40,7 @@ function UserPage() {
     history.push(`/details`);
   };
   return (
-    <div className="container">
+    <div>
       {/* TODO-need to fix searchSaga */}
       <SearchForm />
       <div>

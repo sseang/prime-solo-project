@@ -1,13 +1,15 @@
 .genres {
-  text-wrap: wrap;
+  text-align: center;
   padding: 25px;
   margin-left: 5px;
 }
 
 .genresButtons {
-  text-wrap: wrap;
+  text-wrap: center;
+  color: #e180e1;
   padding: 10px;
-  margin-left: 5px;
+  margin: 30px;
+  border-radius: 20px;
 }
 img {
   max-width: 300px;
