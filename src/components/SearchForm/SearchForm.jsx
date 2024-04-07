@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 //nav to new form
 import { useHistory } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
+import './SearchForm.css';
 
 function SearchForm() {
   const user = useSelector((store) => store.user);
@@ -40,7 +42,7 @@ function SearchForm() {
   };
   return (
     <div>
-      <div>
+      <div className="searchContainer">
         <form>
           <input
             id="search"
@@ -52,7 +54,12 @@ function SearchForm() {
             }
             value={animeSearch}
           />
-          <button onClick={handleSearch}>Find ?</button>
+
+          <SearchIcon
+            variant="contain"
+            fontSize="medium"
+            onClick={handleSearch}
+          />
         </form>
         <div>
           {' '}

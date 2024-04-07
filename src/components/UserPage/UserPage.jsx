@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 
 //nav to new form
 import { useHistory } from 'react-router-dom';
+import Avatar from '@mui/material/Avatar';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -43,9 +44,13 @@ function UserPage() {
     <div>
       {/* TODO-need to fix searchSaga */}
       <SearchForm />
-      <div>
+      <div className="user">
         <h2>Welcome, {user.username}!</h2>
-        <img src={user.avatar} />
+        <Avatar
+          className="userAvatar"
+          src={user.avatar}
+          sx={{ width: 100, height: 100 }}
+        />
         <p>Your ID is: {user.id}</p>
         <b>Favorite Genres: {user.favorite_genres}</b>
       </div>

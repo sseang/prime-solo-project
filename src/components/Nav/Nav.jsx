@@ -7,6 +7,8 @@ import Stack from '@mui/material/Stack';
 import { pink, purple } from '@mui/material/colors';
 import SvgIcon from '@mui/material/SvgIcon';
 import ListIcon from '@mui/icons-material/List';
+import LogoutIcon from '@mui/icons-material/Logout';
+
 function Nav() {
   const user = useSelector((store) => store.user);
 
@@ -37,7 +39,11 @@ function Nav() {
           <>
             <Stack direction="row" spacing={1}>
               <Link to="/user">
-                <HomeIcon fontSize="large" sx={{ color: purple[200] }} />
+                <HomeIcon
+                  className="navLink"
+                  fontSize="large"
+                  sx={{ color: purple[200] }}
+                />
               </Link>
 
               {/* <Link className="navLink" to="/info">
@@ -45,9 +51,17 @@ function Nav() {
             </Link> */}
 
               <Link to="/watchlist">
-                <ListIcon fontSize="large" sx={{ color: purple[200] }} />
+                <ListIcon
+                  className="navLink"
+                  fontSize="large"
+                  sx={{ color: purple[200] }}
+                />
               </Link>
-              <LogOutButton className="navLink" />
+              <LogoutIcon
+                className="navLink"
+                fontSize="large"
+                sx={{ color: purple[200] }}
+              />
             </Stack>
           </>
         )}
