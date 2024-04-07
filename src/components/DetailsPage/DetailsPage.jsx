@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Image } from 'primereact/image';
+import Button from '@mui/material/Button';
 
 import './DetailsPage.css';
 
@@ -49,7 +50,7 @@ function DetailsPage() {
   };
 
   return (
-    <div>
+    <div className="details">
       <h2>Details</h2>
       {details.map((details, index) => {
         return (
@@ -58,8 +59,14 @@ function DetailsPage() {
             <div>
               Genres: <p>{details.Genres}</p>
             </div>
-            <Image src={details.poster} alt="Image" preview />
-            {/* <Image
+            <div className="description">
+              <Image
+                className="description"
+                src={details.poster}
+                alt="Image"
+                preview
+              />
+              {/* <Image
               src={details.poster}
               zoomSrc={details.poster}
               alt="Image"
@@ -67,28 +74,27 @@ function DetailsPage() {
               height="300"
               preview
             /> */}
-
-            <p className="description">{details.description}</p>
-            <span>
+              <p className="description">{details.description}</p>
               <p>Director: {details.director}</p> {''}{' '}
               <p>Year Published: {details.year_published}</p>
-            </span>
-            <button
-              onClick={() => addToWatchListHandle(details)}
-              className="detailBtn">
-              {/* TODO-Add conditional for remove from watch list*/}
-              {/* {details.id === watchList.animeList_id && (
+            </div>
+            <span className="detailBtn">
+              <Button
+                variant="contained"
+                onClick={() => addToWatchListHandle(details)}>
+                {/* TODO-Add conditional for remove from watch list*/}
+                {/* {details.id === watchList.animeList_id && (
                 <p>
                   <i>Remove from Watch List?</i>
                 </p>
               )} */}
-              Add to Watch List?
-            </button>
-            <div>
-              <button className="detailBtn" onClick={handleOnNav} type="btn">
+                Add to Watch List?
+              </Button>
+
+              <Button variant="contained" onClick={handleOnNav} type="btn">
                 Back
-              </button>
-            </div>
+              </Button>
+            </span>
           </pre>
         );
       })}

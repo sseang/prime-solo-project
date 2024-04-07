@@ -5,6 +5,9 @@ import SearchForm from '../SearchForm/SearchForm';
 import './WatchListPage.css';
 
 import { useEffect } from 'react';
+import { Button } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function WatchListPage() {
   const user = useSelector((store) => store.user);
@@ -46,22 +49,28 @@ function WatchListPage() {
               <img src={watchList.poster} />
 
               <div>
-                <button
-                  className="watchlistBtn"
-                  onClick={() => deleteAnimeItem(watchList)}>
-                  Remove from Watch List?
-                </button>
-
-                {watchList.isLiked ? (
-                  <p>You Liked this Anime!</p>
-                ) : (
-                  <button
+                <div>
+                  <Button
+                    variant="contained"
+                    fontSize="small"
                     className="watchlistBtn"
-                    onClick={() => handleUpdateLike(watchList)}>
-                    LIKE?
-                  </button>
-                )}
-
+                    startIcon={<DeleteIcon />}
+                    onClick={() => deleteAnimeItem(watchList)}>
+                    Remove from List?
+                  </Button>
+                </div>
+                <div>
+                  {watchList.isLiked ? (
+                    <p className="isWatched">You Liked this Anime!</p>
+                  ) : (
+                    <FavoriteIcon
+                      fontSize="large"
+                      className="watchlistBtn"
+                      onClick={() => handleUpdateLike(watchList)}>
+                      LIKE?
+                    </FavoriteIcon>
+                  )}
+                </div>
                 {/* TODO- create UPDATE route in watchlist.js  */}
               </div>
               <p className="isWatched">

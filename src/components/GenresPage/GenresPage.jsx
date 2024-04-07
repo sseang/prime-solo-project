@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import SearchForm from '../SearchForm/SearchForm';
 //nav to new form
 import { useHistory } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 
 function GenresPage() {
   const user = useSelector((store) => store.user);
@@ -51,11 +53,14 @@ function GenresPage() {
                 src={genres.poster}
               />
               <div>
-                <button
+                <Button
+                  variant="contained"
+                  fontSize="small"
+                  startIcon={<PlaylistAddIcon />}
                   className="genresBtn"
                   onClick={() => addToWatchListHandle(genres)}>
                   Add to Watch List?
-                </button>
+                </Button>
               </div>
             </div>
           );

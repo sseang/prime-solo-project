@@ -1,17 +1,21 @@
-img {
-  max-width: 300px;
-  max-height: 300px;
-  padding: 10px;
+.details {
+  text-align: center;
+  max-width: 1000px;
+  max-height: 900px;
+  padding: 5px;
+  margin-left: 15%;
+  background-color: #f6c1f1;
 }
 .description {
+  text-wrap: wrap;
+
   padding: 15px;
-  margin-left: 5px;
+  background-color: #f6c1f1;
 }
 .detailBtn {
   text-wrap: wrap;
-  padding: 5px;
-  margin: 5px;
-  margin-left: 5px;
+  padding: 20px;
+  margin: 30px;
 }
 
 .p-image-preview {
