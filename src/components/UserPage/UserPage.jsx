@@ -46,11 +46,7 @@ function UserPage() {
       <SearchForm />
       <div className="user">
         <h2>Welcome, {user.username}!</h2>
-        <Avatar
-          className="userAvatar"
-          src={user.avatar}
-          sx={{ width: 100, height: 100 }}
-        />
+        <Avatar src={user.avatar} sx={{ width: 100, height: 100 }} />
         <p>Your ID is: {user.id}</p>
         <b>Favorite Genres: {user.favorite_genres}</b>
       </div>
