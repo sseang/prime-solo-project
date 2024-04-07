@@ -23,12 +23,12 @@
 
 .navLink {
   display: inline-block;
-  color: #f2f2f2;
+  color: #ce93d8;
   background-color: #0598f3;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 20px;
 
   /* these last two make the logout button in
   the nav bar look like another link */
