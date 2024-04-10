@@ -14,11 +14,7 @@ function LogOutButton(props) {
       // is passed to it from it's parents through React props
       className={props.className}
       onClick={() => dispatch({ type: 'LOGOUT' })}>
-      <LogoutIcon
-        className="navLink"
-        fontSize="large"
-        sx={{ color: purple[200] }}
-      />
+      <LogoutIcon className="navLink" fontSize="large" />
     </Button>
   );
 }

@@ -7,7 +7,7 @@ body,
 body {
   background-image: url('https://images6.alphacoders.com/785/785425.png');
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #0598f3;
+  color: whitesmoke;
   margin: 0px;
 }
 
@@ -103,7 +103,7 @@ Form Treatment
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: #f6c1f1;
+  background-color: #ce93d8;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }

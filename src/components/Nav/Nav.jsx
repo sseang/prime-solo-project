@@ -39,11 +39,7 @@ function Nav() {
           <>
             <Stack direction="row" spacing={1}>
               <Link to="/user">
-                <HomeIcon
-                  className="navLink"
-                  fontSize="large"
-                  sx={{ color: purple[200] }}
-                />
+                <HomeIcon className="navLink" fontSize="large" />
               </Link>
 
               {/* <Link className="navLink" to="/info">
@@ -51,11 +47,7 @@ function Nav() {
             </Link> */}
 
               <Link to="/watchlist">
-                <ListIcon
-                  className="navLink"
-                  fontSize="large"
-                  sx={{ color: purple[200] }}
-                />
+                <ListIcon className="navLink" fontSize="large" />
               </Link>
               <LogOutButton />
             </Stack>

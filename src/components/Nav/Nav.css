@@ -16,14 +16,14 @@
 .nav-title {
   font-size: 24px;
   font-weight: 700;
-  color: #ce93d8;
+  color: whitesmoke;
   padding-left: 615px;
   margin: 0;
 }
 
 .navLink {
   display: inline-block;
-  color: #ce93d8;
+  color: whitesmoke;
   background-color: #0598f3;
   text-align: center;
   padding: 24px 10px;

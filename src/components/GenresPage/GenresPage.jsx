@@ -7,6 +7,8 @@ import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 
+import { useEffect } from 'react';
+
 function GenresPage() {
   const user = useSelector((store) => store.user);
   const genres = useSelector((store) => store.genres);
@@ -15,12 +17,12 @@ function GenresPage() {
   const history = useHistory();
   console.log('Genres!:', genres);
 
-  // useEffect(() => {
-  //   dispatch ({
-  //     type: 'SET_WATCH_LIST',
-  //     payload: { user_id: user.id, animeList_id: genres.id },
-  //   });
-  // }, []);
+  useEffect(() => {
+    // dispatch({
+    //   type: 'SET_GENRES',
+    //   payload: genresResponse.data,
+    // });
+  }, []);
 
   const addToWatchListHandle = (genres) => {
     dispatch({
