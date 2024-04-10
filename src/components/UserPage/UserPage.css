@@ -28,3 +28,12 @@ img {
   text-decoration: underline;
   font-weight: bolder;
 }
+
+.user {
+  text-align: center;
+  margin-left: 5px;
+}
+
+.avatar {
+  margin-left: 65px;
+}

@@ -82,7 +82,9 @@ VALUES
 ('Naruto', 'tuna'),
 ('Sky Captain', 'shark' ),
 ('PhoMaster Nguyen', 'fishy'),
-('Bill', 'sushi');
+('Bill', 'sushi')
+('Chips', 'Dipster!')
+('Skipper', 'Gilligan');;
 
 
 

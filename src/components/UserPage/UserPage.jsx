@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 //nav to new form
 import { useHistory } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
+import { center } from '@cloudinary/url-gen/qualifiers/textAlignment';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -45,12 +46,30 @@ function UserPage() {
     <div>
       {/* TODO-need to fix searchSaga */}
       <SearchForm />
-      <div className="user">
+      <Box
+        className="user"
+        borderRadius={2}
+        sx={{
+          border: 'solid',
+          width: 250,
+          height: 300,
+          marginLeft: 2,
+          borderRadius: 5,
+          bgcolor: '#ce93d8',
+          '&:hover': {
+            bgcolor: '#65b7f5',
+            justifyContent: 'right',
+          },
+        }}>
         <h2>Welcome, {user.username}!</h2>
-        <Avatar src={user.avatar} sx={{ width: 100, height: 100 }} />
+        <Avatar
+          className="avatar"
+          src={user.avatar}
+          sx={{ width: 125, height: 125 }}
+        />
         <p>Your ID is: {user.id}</p>
         <b>Favorite Genres: {user.favorite_genres}</b>
-      </div>
+      </Box>
       <h2 className="pageTitles">Top Rated Anime</h2>
       <div className="anime">
         {topRated.map((topRated) => {
