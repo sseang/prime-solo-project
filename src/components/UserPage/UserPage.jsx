@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SearchForm from '../SearchForm/SearchForm';
 import './UserPage.css';
 import { useEffect } from 'react';
+import Box from '@mui/material/Box';
 
 //nav to new form
 import { useHistory } from 'react-router-dom';
