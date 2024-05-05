@@ -15,6 +15,7 @@
     "axios": "^1.6.2",
     "bcryptjs": "^2.4.3",
     "cookie-session": "^2.0.0",
+    "dotenv": "^16.4.5",
     "express": "^4.17.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
@@ -38,7 +39,6 @@
   "devDependencies": {
     "@import-meta-env/unplugin": "^0.5.1",
     "@vitejs/plugin-react": "^4.2.1",
-    "dotenv": "^16.4.5",
     "nodemon": "^2.0.4",
     "vite": "^5.0.7",
     "vitest": "^1.0.4"
